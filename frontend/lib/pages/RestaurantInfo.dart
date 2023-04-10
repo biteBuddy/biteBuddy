@@ -15,7 +15,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
     return Scaffold(
       body: SafeArea(
           child: Stack(
-        children: [Container()],
+        children: [Center(child: Text("Info"))],
       )),
     );
   }

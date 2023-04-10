@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'login.dart';
 
@@ -19,12 +18,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'biteBuddy',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.workSansTextTheme(Theme.of(context)
             .textTheme
-            .copyWith(bodyText1: TextStyle(fontSize: 20))),
+            .copyWith(bodyLarge: const TextStyle(fontSize: 20))),
       ),
       home: const MainApp(),
     );
@@ -46,7 +46,7 @@ class _MainAppState extends State<MainApp> {
         title: const Text('biteBuddy'),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Center(
           child: ElevatedButton(
             child: const Text(

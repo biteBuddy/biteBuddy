@@ -14,6 +14,11 @@ class SignupPage extends StatelessWidget {
       title: _title,
       home: Scaffold(
         appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: const Text(""),
           backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         ),
