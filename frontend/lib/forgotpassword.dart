@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/login.dart';
 
-
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -13,6 +12,11 @@ class ForgotPasswordPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+          leading: BackButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: const Text(_title),
           backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         ),

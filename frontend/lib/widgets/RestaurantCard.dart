@@ -16,7 +16,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
     return GestureDetector(
       onDoubleTap: (() {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => RestaurantDetails()));
+            MaterialPageRoute(builder: (context) => const RestaurantDetails()));
       }),
       child: Container(
         decoration: BoxDecoration(
