@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/forgotpassword.dart';
+import 'package:frontend/authentication/pages/forgotpassword.dart';
 import 'package:frontend/pages/homePage.dart';
-import 'package:frontend/signup.dart';
-import './pages/bottomNav.dart';
+import 'package:frontend/authentication/pages/signup.dart';
+import '../../pages/bottomNav.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
