@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import '../pages/RestaurantInfo.dart';
+import 'package:frontend/common/theme.dart';
+import 'RestaurantInfo.dart';
 
 class RestaurantCard extends StatefulWidget {
   const RestaurantCard({super.key});
@@ -58,10 +59,13 @@ class _RestaurantCardState extends State<RestaurantCard> {
           Positioned(
             right: 15,
             top: 10,
-            child: Icon(
-              Icons.favorite_border_outlined,
-              color: Colors.green[400],
-              size: 30,
+            child: CircleAvatar(
+              backgroundColor: CustomTheme().primaryColor1,
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+                size: 26,
+              ),
             ),
           ),
           Positioned(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import './authentication/pages/login.dart';
 
 import 'package:frontend/pages/favorites.dart';
 import 'package:frontend/pages/homePage.dart';
@@ -22,9 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'biteBuddy',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: GoogleFonts.workSansTextTheme(Theme.of(context)
-            .textTheme
-            .copyWith(bodyLarge: const TextStyle(fontSize: 20))),
+        textTheme: TextTheme(headline1: TextStyle(fontFamily: "Sofia Pro")),
       ),
       home: const MainApp(),
     );

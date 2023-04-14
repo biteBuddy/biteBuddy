@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/forgotpassword.dart';
-import 'package:frontend/main.dart';
-import 'package:frontend/pages/homePage.dart';
-import 'package:frontend/signup.dart';
-import './pages/bottomNav.dart';
+import 'package:frontend/authentication/pages/forgotpassword.dart';
+import 'package:frontend/authentication/pages/signup.dart';
+import '../../pages/bottomNav.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,14 +17,10 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyApp()),
-              );
-              ;
+              Navigator.pop(context);
             },
           ),
-          title: const Text("Login"),
+          title: const Text(""),
           backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         ),
         body: Builder(
@@ -55,8 +49,8 @@ class LoginPage extends StatelessWidget {
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child: TextField(
-                    decoration: const InputDecoration(
+                  child: const TextField(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
                     ),
@@ -64,9 +58,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
+                  child: const TextField(
                     obscureText: true,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                     ),
@@ -100,13 +94,14 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NavigationPage(),
+                          builder: (context) => const NavigationPage(),
                         ),
                       );
                     },
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     const Text('Don\'t have an Account?'),
                     TextButton(
@@ -127,7 +122,6 @@ class LoginPage extends StatelessWidget {
                       },
                     ),
                   ],
-                  mainAxisAlignment: MainAxisAlignment.center,
                 ),
               ],
             ),
