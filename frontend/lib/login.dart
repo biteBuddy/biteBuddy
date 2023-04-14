@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/forgotpassword.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/pages/homePage.dart';
 import 'package:frontend/signup.dart';
 import './pages/bottomNav.dart';
@@ -18,10 +19,14 @@ class LoginPage extends StatelessWidget {
         appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MyApp()),
+              );
+              ;
             },
           ),
-          title: const Text(""),
+          title: const Text("Login"),
           backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         ),
         body: Builder(

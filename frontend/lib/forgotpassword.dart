@@ -14,7 +14,10 @@ class ForgotPasswordPage extends StatelessWidget {
         appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
             },
           ),
           title: const Text(_title),

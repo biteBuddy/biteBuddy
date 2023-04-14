@@ -19,7 +19,7 @@ class SignupPage extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: const Text(""),
+          title: const Text("Sign Up"),
           backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         ),
         body: const SignupPageWidget(),
