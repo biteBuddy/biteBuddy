@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:frontend/widgets/RestaurantCard.dart';
+import 'package:frontend/Restuarant/Page/RestaurantCard.dart';
 
 class FavRestro extends StatefulWidget {
   const FavRestro({super.key});

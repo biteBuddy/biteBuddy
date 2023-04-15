@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:frontend/common/theme.dart';
-import 'package:frontend/widgets/singleFood.dart';
+import 'package:frontend/Food/Page/singleFood.dart';
 
 class RestaurantDetails extends StatefulWidget {
   const RestaurantDetails({super.key});

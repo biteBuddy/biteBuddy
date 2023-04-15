@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:frontend/topPicks.dart';
+import 'package:frontend/widgets/topPicks.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

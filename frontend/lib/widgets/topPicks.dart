@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/widgets/RestaurantCard.dart';
+import 'package:frontend/Restuarant/Page/RestaurantCard.dart';
 
 // ignore_for_file: prefer_const_constructors
 class TopPicks extends StatefulWidget {
