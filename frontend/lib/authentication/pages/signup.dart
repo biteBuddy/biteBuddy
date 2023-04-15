@@ -13,15 +13,16 @@ class SignupPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: const Text("Sign Up"),
-          backgroundColor: const Color.fromARGB(100, 64, 185, 60),
-        ),
+        // appBar: AppBar(
+        //   leading: BackButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //   ),
+        //   title: const Text("Sign Up",style:
+        //                 TextStyle(fontFamily: "NanumPenScript", fontSize: 20),),
+        //   backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+        // ),
         body: const SignupPageWidget(),
       ),
     );
@@ -51,7 +52,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
             height: 150,
             width: 150,
             padding: const EdgeInsets.all(10),
-            child: Image.asset('assets/logo.png'),
+            child: Image.asset('assets/images/logo.png'),
           ),
           Container(
             alignment: Alignment.center,
@@ -101,7 +102,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
             padding: const EdgeInsets.fromLTRB(8, 18, 8, 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+                backgroundColor: Color.fromARGB(255, 151, 196, 99),
               ),
               child: const Text('Sign up'),
               onPressed: () {
@@ -118,14 +119,17 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text('Already have an account?'),
+              const Text(
+                'Already have an account?',
+                style: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
+              ),
               TextButton(
                 style: TextButton.styleFrom(
                   foregroundColor: const Color.fromARGB(210, 237, 63, 60),
                 ),
                 child: const Text(
                   'Sign in',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
                 ),
                 onPressed: () {
                   Navigator.push(
