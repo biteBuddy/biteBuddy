@@ -1,106 +1,53 @@
-import 'dart:developer';
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:frontend/authentication/pages/login.dart';
-import 'package:intro_slider/intro_slider.dart';
+import 'package:frontend/pages/landingpages.dart';
+import 'package:frontend/splashScreen/loadinScreen.dart';
+import './authentication/pages/login.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: const IntroScreenDefault(),
+      title: 'biteBuddy',
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Poppins"),
+      home: const MainApp(),
     );
   }
 }
 
-class IntroScreenDefault extends StatefulWidget {
-  const IntroScreenDefault({Key? key}) : super(key: key);
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
 
   @override
-  IntroScreenDefaultState createState() => IntroScreenDefaultState();
+  State<MainApp> createState() => _MainAppState();
 }
 
-class IntroScreenDefaultState extends State<IntroScreenDefault> {
-  List<ContentConfig> listContentConfig = [];
-
+class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-
-    listContentConfig.add(
-      const ContentConfig(
-        styleTitle: TextStyle(fontFamily: "NanumPenScript", fontSize: 35),
-        title: "Track and Order Food",
-        
-        styleDescription: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
-        description:
-            " Keep track of your meals and order food with ease .   ",
-        pathImage: "assets/images/5.png",
-        backgroundColor: Color(0xFFD2FBA4),
-      ),
-    );
-    listContentConfig.add(
-      const ContentConfig(
-        styleTitle: TextStyle(fontFamily: "NanumPenScript", fontSize: 35),
-        title: "Simplify Meal Planning",
-        
-        styleDescription: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
-        description:
-            " Take the stress out of meal planning with our easy-to-use tools. ",
-        pathImage: "assets/images/6.png",
-        backgroundColor: Color(0xFFFCC883),
-      ),
-    );
-    listContentConfig.add(
-      const ContentConfig(
-        styleTitle: TextStyle(fontFamily: "NanumPenScript", fontSize: 35),
-        title: "Achieve your Health Goals",
-        
-        styleDescription: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
-        description:
-            "Set and achieve your health goals with biteBuddy. ",
-        pathImage: "assets/images/7.png",
-        backgroundColor: Color(0xFFFCC883),
-      ),
-    );
-    listContentConfig.add(
-      const ContentConfig(
-        styleTitle: TextStyle(fontFamily: "NanumPenScript", fontSize: 35),
-        title: "Stay on top of your diet",
-        styleDescription: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
-        description:
-            "Monitor your diet and make healthy choices for a healthy life. ",
-        pathImage: "assets/images/7.png",
-        backgroundColor: Color(0xFFD2FBA4),
-      ),
-    );
+    Timer(const Duration(milliseconds: 3000), (() {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: ((context) => const LandingPage())));
+    }));
   }
 
-  void onDonePress() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
-    );
-    log("End of slides");
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return IntroSlider(
-      key: UniqueKey(),
-      listContentConfig: listContentConfig,
-      onDonePress: onDonePress,
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: const Center(child: LoadinScreen()),
+      ),
     );
   }
 }

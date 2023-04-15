@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class MyWidget4 extends StatefulWidget {
-  const MyWidget4({super.key});
+class ProfileSection extends StatefulWidget {
+  const ProfileSection({super.key});
 
   @override
-  State<MyWidget4> createState() => _MyWidget4State();
+  State<ProfileSection> createState() => _ProfileSectionState();
 }
 
-class _MyWidget4State extends State<MyWidget4> {
+class _ProfileSectionState extends State<ProfileSection> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return SafeArea(
+      child: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 15,
           horizontal: 7,

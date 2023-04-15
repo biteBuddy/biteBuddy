@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/widgets/RestaurantCard.dart';
+import 'package:frontend/Restuarant/Page/RestaurantCard.dart';
 
 // ignore_for_file: prefer_const_constructors
 class TopPicks extends StatefulWidget {
@@ -13,7 +13,6 @@ class _TopPicksState extends State<TopPicks> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

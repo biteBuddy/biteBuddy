@@ -30,8 +30,7 @@ class LoginPage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
-                  height: 150,
-                  width: 150,
+                  height: 200,
                   padding: const EdgeInsets.all(10),
                   child: Image.asset('assets/images/logo.png'),
                 ),

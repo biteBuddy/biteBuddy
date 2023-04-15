@@ -109,22 +109,26 @@ class _SingleFoodState extends State<SingleFood> {
                       SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          ...widget.ingredients.map((e) => Container(
-                                margin: EdgeInsets.symmetric(horizontal: 3),
-                                child: Text(
-                                  e,
-                                  style: TextStyle(
-                                      fontSize: 17, color: Colors.grey),
-                                ),
-                              ))
-                        ],
-                      )
+                      // Row(
+                      //   children: [
+                      //     ...widget.ingredients.map((e) => Container(
+                      //           margin: EdgeInsets.symmetric(horizontal: 3),
+                      //           child: Text(
+                      //             e,
+                      //             style: TextStyle(
+                      //                 fontSize: 17, color: Colors.grey),
+                      //           ),
+                      //         ))
+                      //   ],
+                      // )
+                      Text("Short description preferably under 100 characters")
                     ],
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 7,
             )
           ],
         ),
