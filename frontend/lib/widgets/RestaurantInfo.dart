@@ -42,6 +42,21 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                     foregroundColor: Colors.white,
                     child: Icon(Icons.favorite),
                   ),
+                ),
+                Positioned(
+                  left: 10,
+                  top: 10,
+                  child: GestureDetector(
+                    onTap: (() => Navigator.pop(context)),
+                    child: CircleAvatar(
+                      backgroundColor: CustomTheme().primaryColor1,
+                      foregroundColor: Colors.white,
+                      child: Icon(
+                        Icons.arrow_back_rounded,
+                        size: 30,
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),

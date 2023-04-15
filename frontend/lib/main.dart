@@ -1,11 +1,8 @@
-import 'package:flutter/material.dart';
-import './authentication/pages/login.dart';
+import 'dart:async';
 
-import 'package:frontend/pages/favorites.dart';
-import 'package:frontend/pages/homePage.dart';
-import 'package:frontend/pages/page2.dart';
-import 'package:frontend/pages/page3.dart';
-import 'package:frontend/pages/page4.dart';
+import 'package:flutter/material.dart';
+import 'package:frontend/splashScreen/loadinScreen.dart';
+import './authentication/pages/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -38,27 +35,19 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   @override
+  void initState() {
+    super.initState();
+    Timer(Duration(milliseconds: 3000), (() {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: ((context) => const LoginPage())));
+    }));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('biteBuddy'),
-      ),
       body: Container(
         padding: const EdgeInsets.all(10),
-        child: Center(
-          child: ElevatedButton(
-            child: const Text(
-              'Touch Me!',
-              style: TextStyle(fontSize: 24.0),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-          ),
-        ),
+        child: Center(child: LoadinScreen()),
       ),
     );
   }

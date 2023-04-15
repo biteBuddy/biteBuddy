@@ -15,15 +15,6 @@ class LoginPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: const Text(""),
-          backgroundColor: const Color.fromARGB(100, 64, 185, 60),
-        ),
         body: Builder(
           builder: (context) => Padding(
             padding: const EdgeInsets.all(10),
@@ -31,8 +22,7 @@ class LoginPage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
-                  height: 150,
-                  width: 150,
+                  height: 200,
                   padding: const EdgeInsets.all(10),
                   child: Image.asset('assets/logo.png'),
                 ),
