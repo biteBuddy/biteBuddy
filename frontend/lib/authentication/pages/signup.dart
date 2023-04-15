@@ -106,7 +106,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
               ),
               child: const Text('Sign up'),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
@@ -132,7 +132,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
                   style: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
                 ),
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()),
                   );

@@ -96,7 +96,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                     backgroundColor: Color.fromARGB(255, 151, 196, 99),
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginPage()),

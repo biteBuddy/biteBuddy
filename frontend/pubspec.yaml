@@ -57,27 +57,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/
-    - fast_food.jpg
-    - bistro.jpg
-    - buffet.jpg
-    - cafe.jpg
-    - fine_dining.jpg
-    - buff.jpg
-    - cheese.jpg
-    - chicken.jpg
-    - chilly.jpg
-    - eggs.jpg
-    - garlic.jpg
-    - honey.jpg
-    - mayo.jpg
-    - milk.jpg
-    - mushroom.jpg
-    - mutton.jpg
-    - onion.jpg
-    - rice.jpg
-    - spinach.jpg
-    - tomato.jpg
-    - mushroom.jpg
+   
     - assets/images/
 
 

@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const ForgotPasswordPage(),
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     child: const Text('Login'),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const NavigationPage(),
@@ -119,7 +119,7 @@ class LoginPage extends StatelessWidget {
                             fontSize: 22, fontFamily: "NanumPenScript"),
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const SignupPage(),

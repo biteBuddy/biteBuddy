@@ -5,8 +5,6 @@ import 'package:frontend/authentication/pages/login.dart';
 
 import 'package:intro_slider/intro_slider.dart';
 
-
-
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
 
@@ -75,14 +73,14 @@ class IntroScreenDefaultState extends State<IntroScreenDefault> {
         styleDescription: TextStyle(fontFamily: "NanumPenScript", fontSize: 22),
         description:
             "Monitor your diet and make healthy choices for a healthy life. ",
-        pathImage: "assets/images/7.png",
+        pathImage: "assets/images/8.png",
         backgroundColor: Color(0xFFD2FBA4),
       ),
     );
   }
 
   void onDonePress() {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
