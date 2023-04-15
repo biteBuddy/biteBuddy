@@ -17,10 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'biteBuddy',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(headline1: TextStyle(fontFamily: "Sofia Pro")),
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Poppins"),
       home: const MainApp(),
     );
   }
