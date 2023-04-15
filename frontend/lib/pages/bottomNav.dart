@@ -23,7 +23,7 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   int _selectedIndex = 0;
-  List<Widget> _widgetOptions = [
+  final List<Widget> _widgetOptions = [
     HomePage(),
     MyWidget2(),
     Favorites(),
