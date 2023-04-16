@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import '../pages/RestaurantInfo.dart';
+import 'package:frontend/common/theme.dart';
+import 'RestaurantInfo.dart';
 
 class RestaurantCard extends StatefulWidget {
   const RestaurantCard({super.key});
@@ -28,7 +29,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
             children: [
               Container(
                 height: 200,
-                width: 330,
+                width: MediaQuery.of(context).size.width - 33,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
@@ -58,44 +59,47 @@ class _RestaurantCardState extends State<RestaurantCard> {
           Positioned(
             right: 15,
             top: 10,
-            child: Icon(
-              Icons.favorite_border_outlined,
-              color: Colors.green[400],
-              size: 30,
+            child: CircleAvatar(
+              backgroundColor: CustomTheme().primaryColor1,
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+                size: 26,
+              ),
             ),
           ),
           Positioned(
-              right: 15,
-              bottom: 55,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.star_rounded,
-                    color: Color.fromARGB(255, 255, 210, 125),
-                    size: 28,
-                  ),
-                  Icon(
-                    Icons.star_rounded,
-                    color: Color.fromARGB(255, 255, 210, 125),
-                    size: 28,
-                  ),
-                  Icon(
-                    Icons.star_rounded,
-                    color: Color.fromARGB(255, 255, 210, 125),
-                    size: 28,
-                  ),
-                  Icon(
-                    Icons.star_rounded,
-                    color: Color.fromARGB(255, 255, 210, 125),
-                    size: 28,
-                  ),
-                  Icon(
-                    Icons.star_half_rounded,
-                    color: Color.fromARGB(255, 255, 210, 125),
-                    size: 28,
-                  ),
-                ],
-              ))
+            left: 4,
+            top: 4,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: const [
+                    Text(
+                      "4.5",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Color.fromARGB(255, 255, 197, 41),
+                      size: 21,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         ]),
       ),
     );

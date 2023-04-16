@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/login.dart';
+import 'package:frontend/authentication/pages/login.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -11,15 +11,18 @@ class ForgotPasswordPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          title: const Text(_title),
-          backgroundColor: const Color.fromARGB(100, 64, 185, 60),
-        ),
+        // appBar: AppBar(
+        //   leading: BackButton(
+        //     onPressed: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => const LoginPage()),
+        //       );
+        //     },
+        //   ),
+        //   title: const Text(_title),
+        //   backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+        // ),
         body: const ForgotPasswordPageWidget(),
       ),
     );
@@ -40,7 +43,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
       child: ListView(
         children: <Widget>[
           Container(
@@ -48,7 +51,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             height: 150,
             width: 150,
             padding: const EdgeInsets.all(10),
-            child: Image.asset('assets/logo.png'),
+            child: Image.asset('assets/images/logo.png'),
           ),
           Container(
             alignment: Alignment.center,
@@ -77,7 +80,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+                backgroundColor: Color.fromARGB(255, 151, 196, 99),
               ),
               child: const Text('Reset Password'),
               onPressed: () {
@@ -90,10 +93,10 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+                    backgroundColor: Color.fromARGB(255, 151, 196, 99),
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginPage()),

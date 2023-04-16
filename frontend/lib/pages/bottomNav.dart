@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:frontend/common/theme.dart';
 import 'page2.dart';
-import 'page3.dart';
-import 'page4.dart';
+import 'profile.dart';
 import 'homePage.dart';
 import 'favorites.dart';
 
@@ -14,44 +16,51 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   void _handleTap(int x) {
+    print(x);
     setState(() {
       _selectedIndex = x;
     });
   }
 
   int _selectedIndex = 0;
-  List<Widget> _widgetOptions = [
+  final List<Widget> _widgetOptions = [
     HomePage(),
     MyWidget2(),
-    MyWidget3(),
     Favorites(),
-    MyWidget4()
+    ProfileSection()
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Color.fromARGB(255, 145, 199, 136),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        unselectedItemColor: Colors.black,
-        selectedIconTheme: IconThemeData(size: 32),
-        iconSize: 26,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: "Cart"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), label: "Camera"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outlined), label: "Favorite"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _handleTap,
-        unselectedFontSize: 0,
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: CustomTheme().primaryColor1,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          unselectedItemColor: Colors.black,
+          selectedIconTheme: IconThemeData(size: 32),
+          iconSize: 26,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "."),
+            BottomNavigationBarItem(icon: Icon(Icons.camera_alt), label: "."),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_outlined), label: "."),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "."),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _handleTap,
+          unselectedFontSize: 0,
+        ),
       ),
     );
   }
