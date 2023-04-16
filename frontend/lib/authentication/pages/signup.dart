@@ -61,6 +61,14 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
       var jsonResponse = jsonDecode(response.body);
 
       print(jsonResponse["status"]);
+      if (jsonResponse["status"]) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      } else {
+        print("Cannot register the user! ");
+      }
     } else {
       setState(() {
         _isNotValid = true;
@@ -136,10 +144,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
               child: const Text('Sign up'),
               onPressed: () {
                 registerUser();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const LoginPage()),
-                // );
+
                 print(signupNameController.text);
                 print(signupEmailController.text);
                 print(signupPasswordController.text);
