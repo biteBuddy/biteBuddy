@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'login.dart';
+import 'package:http/http.dart' as http;
+import "config.dart";
 
 class SignupPage extends StatelessWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -39,6 +43,29 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
   TextEditingController signupNameController = TextEditingController();
   TextEditingController signupEmailController = TextEditingController();
   TextEditingController signupPasswordController = TextEditingController();
+  bool _isNotValid = false;
+
+  void registerUser() async {
+    if (signupEmailController.text.isNotEmpty &&
+        signupPasswordController.text.isNotEmpty) {
+      var regBody = {
+        "email": signupEmailController.text,
+        "password": signupPasswordController.text
+      };
+
+      var response = await http.post(Uri.parse(registration),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody));
+
+      var jsonResponse = jsonDecode(response.body);
+
+      print(jsonResponse["status"]);
+    } else {
+      setState(() {
+        _isNotValid = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +106,11 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
             padding: const EdgeInsets.all(10),
             child: TextField(
               controller: signupEmailController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 labelText: 'Email Address',
+                errorStyle: const TextStyle(color: Colors.red),
+                errorText: _isNotValid ? "Enter correct email" : null,
               ),
             ),
           ),
@@ -105,10 +134,11 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
               ),
               child: const Text('Sign up'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
+                registerUser();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const LoginPage()),
+                // );
                 print(signupNameController.text);
                 print(signupEmailController.text);
                 print(signupPasswordController.text);
