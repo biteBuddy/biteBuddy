@@ -34,6 +34,8 @@ userSchema.pre("save",async function(){
         throw error;
     }
 });
+
+//compare password from the ones stored in mongoDB for the login purpose
 userSchema.method.comparePW=
 async function(userPassword){
     try{

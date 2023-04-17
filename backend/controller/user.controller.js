@@ -1,6 +1,6 @@
 const UserModel = require("../model/user.model");
 const UserServices= require("../services/user.services");
-
+//register
 exports.register= async (req, res, next)=>{
     try{
         const {email,password}= req.body;
@@ -12,6 +12,7 @@ exports.register= async (req, res, next)=>{
         throw error;
     }
 }
+//login
     exports.login= async (req, res, next)=>{
         try{
             const {email,password}= req.body;
