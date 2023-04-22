@@ -16,10 +16,7 @@ class Categories extends StatelessWidget {
           children: [
             Text(
               "Categories",
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                  color: CustomTheme().primaryColor2),
+              style: CustomTheme().listTitle,
             ),
           ],
         ),

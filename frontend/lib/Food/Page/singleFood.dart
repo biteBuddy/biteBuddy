@@ -97,12 +97,9 @@ class _SingleFoodState extends State<SingleFood> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text(
+                          Text(
                             "Food Name",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600),
+                            style: CustomTheme().cardTitle,
                           ),
                         ],
                       ),

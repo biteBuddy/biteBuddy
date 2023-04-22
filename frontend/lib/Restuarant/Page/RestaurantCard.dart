@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:frontend/Restuarant/model/restaurant.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 import 'RestaurantInfo.dart';
 
-class RestaurantCard extends StatefulWidget {
-  const RestaurantCard({super.key});
+class RestaurantCard extends ConsumerStatefulWidget {
+  bool favorites;
+  RestaurantCard(
+      {super.key, required this.restaurantInfo, this.favorites = false});
+
+  Restaurant restaurantInfo;
 
   @override
-  State<RestaurantCard> createState() => _RestaurantCardState();
+  ConsumerState<RestaurantCard> createState() => _RestaurantCardState();
 }
 
-class _RestaurantCardState extends State<RestaurantCard> {
+class _RestaurantCardState extends ConsumerState<RestaurantCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,7 +47,7 @@ class _RestaurantCardState extends State<RestaurantCard> {
                         topRight: Radius.circular(20))),
               ),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               Container(
                 margin: EdgeInsets.only(left: 20, bottom: 10),
@@ -48,26 +55,34 @@ class _RestaurantCardState extends State<RestaurantCard> {
                   children: [
                     Text(
                       'Hyatt Place',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      style: CustomTheme().cardTitle,
                     )
                   ],
                 ),
               )
             ],
           ),
-          Positioned(
-            right: 15,
-            top: 10,
-            child: CircleAvatar(
-              backgroundColor: CustomTheme().primaryColor1,
-              child: Icon(
-                Icons.favorite,
-                color: Colors.white,
-                size: 26,
-              ),
-            ),
-          ),
+          widget.favorites
+              ? Text("")
+              : Positioned(
+                  right: 15,
+                  top: 10,
+                  child: CircleAvatar(
+                    backgroundColor: CustomTheme().primaryColor1,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.favorite,
+                        color: Colors.white,
+                        size: 26,
+                      ),
+                      onPressed: () {
+                        ref
+                            .watch(FavRestroProvider.notifier)
+                            .addFavRestro(widget.restaurantInfo);
+                      },
+                    ),
+                  ),
+                ),
           Positioned(
             left: 4,
             top: 4,

@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/Favorites/provider/favProvider.dart';
 import 'package:frontend/splashScreen/loadinScreen.dart';
 import './authentication/pages/login.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
+
+final FavRestroProvider = ChangeNotifierProvider(((ref) => FavProvider()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,7 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'biteBuddy',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "Poppins"),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: "Poppins",
+      ),
       home: const MainApp(),
     );
   }

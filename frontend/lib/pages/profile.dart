@@ -22,27 +22,31 @@ class _ProfileSectionState extends State<ProfileSection> {
         ),
         child: Column(
           children: [
-            const Center(
-              child: Text(
-                "Profile",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 21),
-              ),
-            ),
             SizedBox(
               height: 30,
             ),
-            const CircleAvatar(
+            CircleAvatar(
               radius: 80,
+              backgroundImage: NetworkImage(
+                  "https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"),
             ),
             SizedBox(
               height: 30,
             ),
-            Text(
-              "First , Last Name",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(fontWeight: FontWeight.w600),
+            Text("Charles Smith", style: TextStyle(fontSize: 16)),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "\"I like food and fitness at the same time.\"",
+                  style: TextStyle(fontWeight: FontWeight.w200),
+                )
+              ],
             )
           ],
         ),

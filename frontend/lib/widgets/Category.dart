@@ -15,11 +15,10 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 3),
+        margin: const EdgeInsets.symmetric(horizontal: 3),
         width: (MediaQuery.of(context).size.width - 50) / 2,
-        height: (MediaQuery.of(context).size.height / 5),
+        height: (MediaQuery.of(context).size.height / 5.5),
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),

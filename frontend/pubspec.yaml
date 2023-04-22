@@ -37,6 +37,7 @@ dependencies:
   indexed: ^0.0.8
   loading_animation_widget: ^1.2.0+4
   flutter_toggle_tab: ^1.2.0
+  flutter_riverpod: ^2.3.5
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
     - spinach.jpg
     - tomato.jpg
     - mushroom.jpg
+    - Group.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

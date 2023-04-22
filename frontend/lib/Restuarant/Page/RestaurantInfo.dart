@@ -67,14 +67,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Hyatt Place",
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: Color.fromARGB(255, 21, 30, 63),
-                        fontFamily: "Poppins"),
-                  ),
+                  Text("Hyatt Place", style: CustomTheme().pageTitle),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -119,13 +112,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Trending this week",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w800,
-                        color: CustomTheme().primaryColor2),
-                  ),
+                  Text("Trending this week", style: CustomTheme().listTitle),
                 ],
               ),
               SizedBox(
@@ -157,13 +144,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Menu",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w800,
-                        color: CustomTheme().primaryColor2),
-                  ),
+                  Text("Menu", style: CustomTheme().listTitle),
                   GestureDetector(
                     child: Text(
                       "View All >",

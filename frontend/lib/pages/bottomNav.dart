@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/search/searchPage.dart';
 import 'page2.dart';
 import 'profile.dart';
 import 'homePage.dart';
-import 'favorites.dart';
+import '../Favorites/pages/favorites.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -25,7 +26,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
     HomePage(),
-    MyWidget2(),
+    Search(),
     Favorites(),
     ProfileSection()
   ];
@@ -51,11 +52,24 @@ class _NavigationPageState extends State<NavigationPage> {
           selectedIconTheme: IconThemeData(size: 32),
           iconSize: 26,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "."),
-            BottomNavigationBarItem(icon: Icon(Icons.camera_alt), label: "."),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_outlined), label: "."),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "."),
+              icon: Icon(Icons.home_filled),
+              label: ".",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+              ),
+              label: ".",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_outlined),
+              label: ".",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: ".",
+            ),
           ],
           currentIndex: _selectedIndex,
           onTap: _handleTap,

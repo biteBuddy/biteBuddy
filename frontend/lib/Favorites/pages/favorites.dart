@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:frontend/common/theme.dart';
-import 'package:frontend/pages/favFoods.dart';
-import 'package:frontend/pages/favRestro.dart';
+import 'package:frontend/Favorites/pages/favFoods.dart';
+import 'package:frontend/Favorites/pages/favRestro.dart';
 
 class Favorites extends StatefulWidget {
   const Favorites({super.key});
