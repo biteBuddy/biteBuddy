@@ -1,5 +1,6 @@
 //mongodb schema model
 const mongoose= require("mongoose");
+const bcrypt = require("bcrypt");
 const db= require("../config/db");
 
 const {Schema}=mongoose; //importing schema property
@@ -21,6 +22,30 @@ const userSchema= new Schema(
         }
     }
 );
+//password encryption
+userSchema.pre("save",async function(){
+    try{
+        var user=this;
+        const salt = await(bcrypt.genSalt(10));
+        const hashpass = await bcrypt.hash(user.password,salt);
+
+        user.password=hashpass;
+    }catch(error){
+        throw error;
+    }
+});
+
+//compare password from the ones stored in mongoDB for the login purpose
+userSchema.method.comparePW=
+async function(userPassword){
+    try{
+        const isMatch= await bcrypt.compare(userPassword,this.password);
+
+    }catch(error){
+        throw error;
+
+    }
+}
 
 const UserModel= db.model("user",userSchema);
 

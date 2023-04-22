@@ -16,7 +16,7 @@ class LoadinScreen extends StatefulWidget {
 class _LoadinScreenState extends State<LoadinScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: double.infinity,
       // child: Stack(
       //   children: [

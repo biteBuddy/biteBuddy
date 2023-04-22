@@ -1,8 +1,10 @@
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/Favorites/provider/favProvider.dart';
+import 'package:frontend/pages/landingpages.dart';
 import 'package:frontend/splashScreen/loadinScreen.dart';
 import './authentication/pages/login.dart';
 
@@ -40,17 +42,18 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 3000), (() {
+    Timer(const Duration(milliseconds: 3000), (() {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: ((context) => const LoginPage())));
+          MaterialPageRoute(builder: ((context) => const LandingPage())));
     }));
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(10),
-        child: Center(child: LoadinScreen()),
+        child: const Center(child: LoadinScreen()),
       ),
     );
   }

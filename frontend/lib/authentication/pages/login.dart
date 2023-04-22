@@ -14,16 +14,25 @@ class LoginPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
+        // appBar: AppBar(
+        //   leading: BackButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //   ),
+        //   title: const Text(""),
+        //   backgroundColor:  Color(0xFFD2FBA4),
+        // ),
         body: Builder(
           builder: (context) => Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
             child: ListView(
               children: <Widget>[
                 Container(
                   alignment: Alignment.center,
                   height: 200,
                   padding: const EdgeInsets.all(10),
-                  child: Image.asset('assets/logo.png'),
+                  child: Image.asset('assets/images/logo.png'),
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -58,7 +67,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const ForgotPasswordPage(),
@@ -70,6 +79,8 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: const Text(
                     'Forgot Password?',
+                    style:
+                        TextStyle(fontFamily: "NanumPenScript", fontSize: 20),
                   ),
                 ),
                 Container(
@@ -77,11 +88,11 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(100, 64, 185, 60),
+                      backgroundColor: Color.fromARGB(255, 151, 196, 99),
                     ),
                     child: const Text('Login'),
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const NavigationPage(),
@@ -93,17 +104,22 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('Don\'t have an Account?'),
+                    const Text(
+                      'Don\'t have an Account?',
+                      style:
+                          TextStyle(fontSize: 20, fontFamily: "NanumPenScript"),
+                    ),
                     TextButton(
                       style: TextButton.styleFrom(
                         foregroundColor: const Color.fromARGB(210, 237, 63, 60),
                       ),
                       child: const Text(
                         'Sign Up',
-                        style: TextStyle(fontSize: 17),
+                        style: TextStyle(
+                            fontSize: 22, fontFamily: "NanumPenScript"),
                       ),
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const SignupPage(),
