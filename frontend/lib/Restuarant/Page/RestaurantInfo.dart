@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:frontend/common/theme.dart';
-import 'package:frontend/Food/Page/singleFood.dart';
+import 'package:frontend/Food/Page/singleCard.dart';
 
 class RestaurantDetails extends StatefulWidget {
   const RestaurantDetails({super.key});
@@ -102,8 +102,8 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
               ),
               Text(
                 "Some sort of information about the restaurant that reflects its identity.This section will be able to pull in customer.And keep them on this page of the app. Be sure to provide a stunning description for the restaurant.",
-                style: TextStyle(
-                    fontSize: 16, color: Colors.black54, fontFamily: "Poppins"),
+                textAlign: TextAlign.justify,
+                style: CustomTheme().pageDesc,
               ),
               SizedBox(
                 height: 10,
