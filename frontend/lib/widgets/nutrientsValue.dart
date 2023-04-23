@@ -63,10 +63,22 @@ class Nutri extends StatelessWidget {
             SizedBox(
               width: 8,
             ),
-            Text(title),
+            Text(title,
+                style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1)),
           ],
         ),
-        Text("${value} g.")
+        Text(
+          "${value} g.",
+          style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 1),
+        )
       ],
     );
   }

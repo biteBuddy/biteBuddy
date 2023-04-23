@@ -66,6 +66,7 @@ class _SingleFoodState extends State<SingleFood> {
                         left: 4,
                         bottom: -20,
                         child: Card(
+                          elevation: 0.1,
                           shape: RoundedRectangleBorder(
                             side: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(20.0),

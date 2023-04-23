@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:frontend/Cart/pages/CartMain.dart';
 import 'package:frontend/common/theme.dart';
 import 'package:frontend/search/searchPage.dart';
 import 'page2.dart';
@@ -26,6 +27,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
     HomePage(),
+    CartMain(),
     Search(),
     Favorites(),
     ProfileSection()
@@ -54,6 +56,12 @@ class _NavigationPageState extends State<NavigationPage> {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_filled),
+              label: ".",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.shopping_cart_rounded,
+              ),
               label: ".",
             ),
             BottomNavigationBarItem(

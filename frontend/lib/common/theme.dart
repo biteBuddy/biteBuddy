@@ -41,7 +41,10 @@ class CustomTheme {
       letterSpacing: 1,
       fontFamily: "Poppins");
   TextStyle cardTitle = const TextStyle(
-      fontSize: 18, fontFamily: "Poppins", fontWeight: FontWeight.w600);
+      fontSize: 19,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.5);
   TextStyle pageDesc = const TextStyle(
       fontSize: 16,
       fontFamily: "Poppins",
@@ -54,16 +57,30 @@ class CustomTheme {
       letterSpacing: 1,
       wordSpacing: 1);
   TextStyle cardDesc = const TextStyle(
-      fontSize: 20, fontFamily: "Poppins", fontWeight: FontWeight.normal);
+      fontSize: 12,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w300,
+      letterSpacing: 1);
   TextStyle priceInfo1 = const TextStyle(
       fontSize: 16,
       fontFamily: "Poppins",
       fontWeight: FontWeight.w700,
       color: Color.fromRGBO(254, 114, 76, 1));
   TextStyle priceInfo2 = const TextStyle(
-      fontSize: 22,
+      fontSize: 18,
       fontFamily: "Poppins",
       fontWeight: FontWeight.w400,
       color: Color.fromRGBO(254, 114, 76, 1),
+      letterSpacing: -1);
+  TextStyle totalStyle = const TextStyle(
+      fontSize: 18,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w400,
+      color: Colors.grey,
+      letterSpacing: -1);
+  TextStyle totalPrice = const TextStyle(
+      fontSize: 16,
+      fontFamily: "Poppins",
+      fontWeight: FontWeight.w500,
       letterSpacing: -1);
 }
