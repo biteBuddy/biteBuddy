@@ -21,23 +21,23 @@ class _NutientsValueState extends State<NutientsValue> {
               fontFamily: "Poppins", fontSize: 20, fontWeight: FontWeight.w500),
         ),
         SizedBox(
-          height: 8,
+          height: 12,
         ),
         Nutri(title: "Mass", value: 200),
         SizedBox(
-          height: 8,
+          height: 12,
         ),
         Nutri(title: "Calories", value: 100),
         SizedBox(
-          height: 8,
+          height: 12,
         ),
         Nutri(title: "Protein", value: 10),
         SizedBox(
-          height: 8,
+          height: 12,
         ),
         Nutri(title: "Fat", value: 5),
         SizedBox(
-          height: 8,
+          height: 12,
         ),
         Nutri(title: "Carbohydrates", value: 4)
       ],
@@ -61,7 +61,7 @@ class Nutri extends StatelessWidget {
               height: 28,
             ),
             SizedBox(
-              width: 8,
+              width: 12,
             ),
             Text(title,
                 style: TextStyle(

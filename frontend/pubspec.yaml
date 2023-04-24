@@ -41,6 +41,7 @@ dependencies:
   flutter_toggle_tab: ^1.2.0
   flutter_riverpod: ^2.3.5
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

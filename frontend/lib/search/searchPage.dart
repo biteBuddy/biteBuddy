@@ -47,9 +47,10 @@ class _SearchState extends State<Search> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Image(image: AssetImage("Group.png")),
-                SizedBox(
-                  height: 10,
+                Icon(
+                  Icons.search_off_rounded,
+                  size: 50,
+                  color: Colors.grey,
                 ),
                 Text(
                   "No Results Found",

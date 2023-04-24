@@ -1,138 +1,195 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/widgets/nutrientsValue.dart';
 
-class FoodInfo extends StatefulWidget {
-  FoodInfo({super.key, required this.food});
-  Food food;
-  @override
-  State<FoodInfo> createState() => _FoodInfoState();
-}
+class FoodInfo extends ConsumerWidget {
+  const FoodInfo({super.key, required this.food});
+  final Food food;
 
-class _FoodInfoState extends State<FoodInfo> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var cart = ref.watch(CartProvider);
+
     return Scaffold(
       body: SafeArea(
           child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(widget.food.img))),
-                ),
-                Positioned(
-                  right: 10,
-                  top: 10,
-                  child: CircleAvatar(
-                    backgroundColor: CustomTheme().primaryColor1,
-                    foregroundColor: Colors.white,
-                    child: Icon(Icons.favorite),
-                  ),
-                ),
-                Positioned(
-                  left: 10,
-                  top: 10,
-                  child: GestureDetector(
-                    onTap: (() => Navigator.pop(context)),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 0.1,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 6),
-                        decoration: BoxDecoration(
-                            color: CustomTheme().primaryColor1,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Icon(
-                          Icons.arrow_back_rounded,
-                          color: Colors.white,
-                          size: 30,
-                        ),
+                Stack(
+                  children: [
+                    Container(
+                      height: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(food.img))),
+                    ),
+                    Positioned(
+                      right: 10,
+                      top: 10,
+                      child: CircleAvatar(
+                        backgroundColor: CustomTheme().primaryColor1,
+                        foregroundColor: Colors.white,
+                        child: Icon(Icons.favorite),
                       ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              widget.food.name,
-              style: CustomTheme().pageTitle,
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "Rs. ",
-                      style: CustomTheme().priceInfo1,
-                    ),
-                    Text(
-                      "${widget.food.price}",
-                      style: CustomTheme().priceInfo2,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.remove_circle_outline,
-                      color: CustomTheme().primaryColor1,
-                      size: 32,
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      "0",
-                      style: TextStyle(
-                          color: CustomTheme().primaryColor2, fontSize: 24),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    Icon(
-                      Icons.add_circle,
-                      color: CustomTheme().primaryColor1,
-                      size: 32,
+                    Positioned(
+                      left: 10,
+                      top: 10,
+                      child: GestureDetector(
+                        onTap: (() => Navigator.pop(context)),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          elevation: 0.1,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 6),
+                            decoration: BoxDecoration(
+                                color: CustomTheme().primaryColor1,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Icon(
+                              Icons.arrow_back_rounded,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
                     )
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  food.name,
+                  style: CustomTheme().pageTitle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Rs. ",
+                          style: CustomTheme().priceInfo1,
+                        ),
+                        Text(
+                          "${food.price}",
+                          style: CustomTheme().priceInfo2,
+                        ),
+                      ],
+                    ),
+                    cart.cartItem.containsKey(food)
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                splashRadius: 1,
+                                onPressed: () {
+                                  cart.decreaseItem(food);
+                                },
+                                icon: Icon(
+                                  Icons.remove_circle_outline,
+                                  color: CustomTheme().primaryColor1,
+                                  size: 32,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                "${cart.cartItem[food]}",
+                                style: TextStyle(
+                                    color: CustomTheme().primaryColor2,
+                                    fontSize: 20),
+                              ),
+                              const SizedBox(
+                                width: 4,
+                              ),
+                              IconButton(
+                                splashRadius: 1,
+                                onPressed: (() {
+                                  cart.increaseItem(food);
+                                }),
+                                icon: Icon(
+                                  Icons.add_circle,
+                                  color: CustomTheme().primaryColor1,
+                                  size: 32,
+                                ),
+                              )
+                            ],
+                          )
+                        : Text("")
+                  ],
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  food.desc,
+                  textAlign: TextAlign.justify,
+                  style: CustomTheme().pageDesc,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                NutientsValue(
+                  nutriValue: food.nutrients,
+                ),
               ],
             ),
-            SizedBox(
-              height: 7,
-            ),
-            Text(
-              widget.food.desc,
-              textAlign: TextAlign.justify,
-              style: CustomTheme().pageDesc,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            NutientsValue(
-              nutriValue: widget.food.nutrients,
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  cart.addToCart(food);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(13),
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                      color: CustomTheme().primaryColor1,
+                      borderRadius: BorderRadius.circular(30)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        foregroundColor: CustomTheme().primaryColor1,
+                        radius: 15,
+                        child: const Icon(
+                          Icons.shopping_bag_rounded,
+                          size: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      const Text(
+                        "Add to Cart",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Poppins",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             )
           ],
         ),

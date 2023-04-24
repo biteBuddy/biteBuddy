@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 
-class CartCard extends StatefulWidget {
-  CartCard({super.key, required this.food});
+class CartCard extends ConsumerWidget {
+  CartCard({super.key, required this.food, required this.count});
   Food food;
+  int count;
 
   @override
-  State<CartCard> createState() => _CartCardState();
-}
-
-class _CartCardState extends State<CartCard> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cart = ref.watch(CartProvider);
     List<String> ingredients = ["Chicken", "Cheese"];
     return Container(
       height: MediaQuery.of(context).size.height / 8.5,
@@ -26,14 +25,14 @@ class _CartCardState extends State<CartCard> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                    image: NetworkImage(widget.food.img), fit: BoxFit.cover)),
+                    image: NetworkImage(food.img), fit: BoxFit.cover)),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.food.name,
+                food.name,
                 style: CustomTheme().cardTitle,
               ),
               Text(
@@ -47,7 +46,7 @@ class _CartCardState extends State<CartCard> {
                     style: CustomTheme().priceInfo1,
                   ),
                   Text(
-                    "${widget.food.price}",
+                    "${food.price}",
                     style: CustomTheme().priceInfo2,
                   ),
                 ],
@@ -56,9 +55,12 @@ class _CartCardState extends State<CartCard> {
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  cart.removeItem(food);
+                },
                 icon: Icon(Icons.close_outlined),
                 color: CustomTheme().primaryColor1,
               ),
@@ -66,33 +68,36 @@ class _CartCardState extends State<CartCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.remove_circle_outline,
-                    color: CustomTheme().primaryColor1,
-                    size: 32,
+                  GestureDetector(
+                    onTap: (() {
+                      cart.decreaseItem(food);
+                    }),
+                    child: Icon(
+                      Icons.remove_circle_outline,
+                      color: CustomTheme().primaryColor1,
+                      size: 24,
+                    ),
                   ),
                   const SizedBox(
                     width: 4,
                   ),
                   Text(
-                    "0",
+                    "${count}",
                     style: TextStyle(
-                        color: CustomTheme().primaryColor2, fontSize: 24),
+                        color: CustomTheme().primaryColor2, fontSize: 18),
                   ),
                   const SizedBox(
                     width: 4,
                   ),
-                  Icon(
-                    Icons.add_circle,
-                    color: CustomTheme().primaryColor1,
-                    size: 32,
-                    shadows: [
-                      BoxShadow(
-                          color: CustomTheme().primaryColor1,
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: const Offset(0, 1))
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      cart.increaseItem(food);
+                    },
+                    child: Icon(
+                      Icons.add_circle,
+                      color: CustomTheme().primaryColor1,
+                      size: 24,
+                    ),
                   )
                 ],
               )
