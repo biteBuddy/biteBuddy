@@ -13,7 +13,7 @@ class SignupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
@@ -27,7 +27,7 @@ class SignupPage extends StatelessWidget {
         //                 TextStyle(fontFamily: "NanumPenScript", fontSize: 20),),
         //   backgroundColor: const Color.fromARGB(100, 64, 185, 60),
         // ),
-        body: const SignupPageWidget(),
+        body: SignupPageWidget(),
       ),
     );
   }
@@ -62,6 +62,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
 
       print(jsonResponse["status"]);
       if (jsonResponse["status"]) {
+        // ignore: use_build_context_synchronously
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const LoginPage()),
