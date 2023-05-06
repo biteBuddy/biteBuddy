@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/Cart/pages/checkoutPage.dart';
 import 'package:frontend/Cart/provider/CartProvider.dart';
 import 'package:frontend/Favorites/provider/favProvider.dart';
 
@@ -24,7 +25,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'biteBuddy',
-      home: const MainApp(),
+      home: MainApp(),
+      initialRoute: '/',
+      routes: {
+        '/cart/checkout': (context) => Checkout(),
+      },
     );
   }
 }

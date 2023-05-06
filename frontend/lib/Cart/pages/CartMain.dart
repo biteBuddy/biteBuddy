@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/Cart/pages/checkoutPage.dart';
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/theme.dart';
 import 'package:frontend/main.dart';
@@ -17,10 +18,16 @@ class CartMain extends ConsumerStatefulWidget {
 
 class _CartMainState extends ConsumerState<CartMain> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Nutrients nutri =
         Nutrients(calories: 200, mass_in_g: 50, protien: 8, carbs: 5, fat: 1);
     Food food = Food(
+      id:"asdf",
         name: "Chicken Burger",
         img: "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg",
         desc:
@@ -28,6 +35,7 @@ class _CartMainState extends ConsumerState<CartMain> {
         price: 250,
         nutrients: nutri);
     final cart = ref.watch(CartProvider);
+    cart.initSharedPreferences();
     final Map<Food, int> _cartItems = cart.cartItem;
     bool exists = !_cartItems.isEmpty;
 
@@ -172,7 +180,12 @@ class _CartMainState extends ConsumerState<CartMain> {
                               color: CustomTheme().primaryColor1,
                               borderRadius: BorderRadius.circular(30)),
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => Checkout())));
+                              },
                               child: Text(
                                 "Checkout",
                                 style: TextStyle(
@@ -193,7 +206,7 @@ class _CartMainState extends ConsumerState<CartMain> {
                             height: 10,
                           ),
                           Text(
-                            "No Results Found",
+                            "Cart is Empty",
                             style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w400,
@@ -204,7 +217,7 @@ class _CartMainState extends ConsumerState<CartMain> {
                             height: 10,
                           ),
                           Text(
-                            "Try searching for a different keyword.",
+                            "Start adding food you love",
                             style: TextStyle(
                                 fontFamily: "Poppins",
                                 color: Colors.black54,

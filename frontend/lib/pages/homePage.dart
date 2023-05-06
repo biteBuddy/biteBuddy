@@ -6,6 +6,7 @@ import 'package:frontend/Restuarant/Page/RestaurantSlider.dart';
 import 'package:frontend/common/theme.dart';
 import 'package:frontend/widgets/categories.dart';
 import 'package:frontend/widgets/topPicks.dart';
+import '../ApiSerives/restaurant.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    restaurantAPI.getRestaurants();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

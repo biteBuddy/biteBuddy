@@ -70,6 +70,7 @@ class CartCard extends ConsumerWidget {
                 children: [
                   GestureDetector(
                     onTap: (() {
+                      cart.loadDataFromLocalStorage();
                       cart.decreaseItem(food);
                     }),
                     child: Icon(
@@ -90,7 +91,8 @@ class CartCard extends ConsumerWidget {
                     width: 4,
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      cart.loadDataToLocalStorage(food);
                       cart.increaseItem(food);
                     },
                     child: Icon(

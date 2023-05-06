@@ -12,7 +12,7 @@ class FoodInfo extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var cart = ref.watch(CartProvider);
-
+    var addFood = ref.watch(FavRestroProvider).addFaveFood;
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -37,10 +37,15 @@ class FoodInfo extends ConsumerWidget {
                     Positioned(
                       right: 10,
                       top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: CustomTheme().primaryColor1,
-                        foregroundColor: Colors.white,
-                        child: Icon(Icons.favorite),
+                      child: GestureDetector(
+                        onTap: () {
+                          addFood(food);
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: CustomTheme().primaryColor1,
+                          foregroundColor: Colors.white,
+                          child: const Icon(Icons.favorite),
+                        ),
                       ),
                     ),
                     Positioned(
@@ -133,7 +138,7 @@ class FoodInfo extends ConsumerWidget {
                               )
                             ],
                           )
-                        : Text("")
+                        : const Text("")
                   ],
                 ),
                 const SizedBox(
@@ -158,7 +163,7 @@ class FoodInfo extends ConsumerWidget {
                   cart.addToCart(food);
                 },
                 child: Container(
-                  padding: EdgeInsets.all(13),
+                  padding: const EdgeInsets.all(13),
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(
                       color: CustomTheme().primaryColor1,

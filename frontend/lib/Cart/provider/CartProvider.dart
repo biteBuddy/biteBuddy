@@ -1,11 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Food/model/Food.dart';
 
 class Cart extends ChangeNotifier {
   // list of cart items
   Map<Food, int> cartItem = {};
+  SharedPreferences? sharedPreferences;
+  void initSharedPreferences() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    notifyListeners();
+  }
 
   void addToCart(Food food) {
     // Need to check if the item already exists in the card
@@ -30,7 +38,6 @@ class Cart extends ChangeNotifier {
 
   void decreaseItem(Food food) {
     if (cartItem.containsKey(food)) {
-      print("here");
       if (cartItem[food] == 1) {
         cartItem.remove(food);
       } else {
@@ -45,5 +52,18 @@ class Cart extends ChangeNotifier {
   void removeItem(Food food) {
     cartItem.remove(food);
     notifyListeners();
+  }
+
+  void loadDataFromLocalStorage() {
+    String value = sharedPreferences!.getString("hey") ?? "";
+    print(value);
+  }
+
+  void loadDataToLocalStorage(Food food) async {
+    print(jsonEncode(food.toMap()).runtimeType);
+  }
+
+  void removeDataFromLocalStorage() {
+    sharedPreferences!.remove("hey");
   }
 }

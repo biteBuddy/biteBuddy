@@ -23,8 +23,12 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: (() {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RestaurantDetails()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => RestaurantDetails(
+                      resInfo: widget.restaurantInfo,
+                    )));
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -38,10 +42,10 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
                 Container(
                   height: 200,
                   width: MediaQuery.of(context).size.width - 33,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                              'https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA='),
+                          image:
+                              AssetImage("assets/${widget.restaurantInfo.img}"),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
@@ -55,7 +59,7 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
                   child: Column(
                     children: [
                       Text(
-                        'Hyatt Place',
+                        widget.restaurantInfo.name,
                         style: CustomTheme().cardTitle,
                       )
                     ],

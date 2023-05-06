@@ -18,7 +18,6 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   void _handleTap(int x) {
-    print(x);
     setState(() {
       _selectedIndex = x;
     });
@@ -30,7 +29,7 @@ class _NavigationPageState extends State<NavigationPage> {
     CartMain(),
     Search(),
     Favorites(),
-    ProfileSection()
+    // ProfileSection()
   ];
   @override
   Widget build(BuildContext context) {
@@ -74,10 +73,10 @@ class _NavigationPageState extends State<NavigationPage> {
               icon: Icon(Icons.favorite_outlined),
               label: ".",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: ".",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person),
+            //   label: ".",
+            // ),
           ],
           currentIndex: _selectedIndex,
           onTap: _handleTap,
