@@ -10,7 +10,8 @@ import 'homePage.dart';
 import '../Favorites/pages/favorites.dart';
 
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+  final token;
+  const NavigationPage({Key? key, @required this.token}): super(key:key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
