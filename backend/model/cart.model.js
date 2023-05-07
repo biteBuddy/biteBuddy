@@ -1,28 +1,29 @@
-const { modelName } = require('./user.model');
-
 const mongoose = require('mongoose');
-
-const nutrientSchema = new mongoose.Schema({
-  mass_in_g: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a mass_in_g for the nutrient.'],
+const itemSchema = mongoose.Schema({
+  foodId: {
+    type: mongoose.Types.ObjectId,
+    requried: [true, 'Enter a valid foodId'],
+    ref: 'food',
   },
-  calories: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a calories for the nutrient.'],
-  },
-  protein: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a protien for the nutrient.'],
-  },
-  carbs: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a carbs for the nutrient.'],
-  },
-  fat: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a fat for the nutrient.'],
+  quantity: {
+    type: Number,
+    required: true,
+    min: [1, 'Must have a minimum of 1 '],
   },
 });
+const cartSchema = mongoose.Schema(
+  {
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      requried: [true, 'You will need to be an user to create a cart.'],
+      ref: 'userBiteBuddy',
+      unique: true,
+    },
+    items: [itemSchema],
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('nutrient', nutrientSchema);
+const cartModel = mongoose.model('cart', cartSchema);
+const itemModel = mongoose.model('item', itemSchema);
+module.exports = { cartModel, itemModel };

@@ -18,7 +18,7 @@ exports.login = async (req, res) => {
   if (isMatch === false) {
     throw new Error('Invalid Password!');
   }
-  let tokenData = { _id: user._id, email: user.email };
+  let tokenData = { userId: user._id, email: user.email };
 
   const token = await UserServices.generateToken(
     tokenData,

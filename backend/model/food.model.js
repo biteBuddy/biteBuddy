@@ -1,3 +1,4 @@
+const { nutrientSchema } = require('./nutrient.model');
 const { modelName } = require('./user.model');
 
 const mongoose = require('mongoose');
@@ -15,34 +16,14 @@ const foodSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please make Sure to enter a name for the food.'],
   },
-  restaurntId: {
+  restaurantId: {
     type: mongoose.Types.ObjectId,
     ref: 'restaurant',
     required: [true, 'Food can only belong to a valid restaurant.'],
   },
-  mass_in_g: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a mass_in_g for the nutrient.'],
-  },
-  calories: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a calories for the nutrient.'],
-  },
-  protein: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a protien for the nutrient.'],
-  },
-  carbs: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a carbs for the nutrient.'],
-  },
-  fat: {
-    type: Decimal128,
-    required: [true, 'Please make Sure to enter a fat for the nutrient.'],
-  },
-  price: {
-    type: Decimal128,
-    required: [true, 'Price must be entered.'],
+  nutrient: {
+    type: nutrientSchema,
+    required: [true, 'Food must have some sort of nutrient value'],
   },
 });
 

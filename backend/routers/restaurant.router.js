@@ -1,12 +1,13 @@
 const restuarantRouter = require('express').Router(); //importing router from express library
 const {
-    createRestaurant,
-    getRestaurants
-} = require('../controller/restaurant.controller')
-
+  createRestaurant,
+  getRestaurants,
+  getRestaurant,
+} = require('../controller/restaurant.controller');
 
 //registration api
-restuarantRouter.post('/create', createRestaurant);
+restuarantRouter.post('/', createRestaurant);
 //login api
-restuarantRouter.get('/get',getRestaurants);
+restuarantRouter.get('/', getRestaurants);
+restuarantRouter.get('/:id', getRestaurant);
 module.exports = restuarantRouter;

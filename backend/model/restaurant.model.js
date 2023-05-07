@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const nutrientSchema = require('./nutrient.model');
 const restaurantSchema = new mongoose.Schema({
   name: {
     type: String,
