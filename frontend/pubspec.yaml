@@ -62,30 +62,28 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/
-    - fast_food.jpg
-    - bistro.jpg
-    - buffet.jpg
-    - cafe.jpg
-    - fine_dining.jpg
-    - buff.jpg
-    - cheese.jpg
-    - chicken.jpg
-    - chilly.jpg
-    - eggs.jpg
-    - garlic.jpg
-    - honey.jpg
-    - mayo.jpg
-    - milk.jpg
-    - mushroom.jpg
-    - mutton.jpg
-    - onion.jpg
-    - rice.jpg
-    - spinach.jpg
-    - tomato.jpg
-    - mushroom.jpg
-    - Group.png
-
+    - assets/fast_food.jpg
+    - assets/bistro.jpg
+    - assets/buffet.jpg
+    - assets/cafe.jpg
+    - assets/fine_dining.jpg
+    - assets/buff.jpg
+    - assets/cheese.jpg
+    - assets/chicken.jpg
+    - assets/chilly.jpg
+    - assets/eggs.jpg
+    - assets/garlic.jpg
+    - assets/honey.jpg
+    - assets/mayo.jpg
+    - assets/milk.jpg
+    - assets/mushroom.jpg
+    - assets/mutton.jpg
+    - assets/onion.jpg
+    - assets/rice.jpg
+    - assets/spinach.jpg
+    - assets/tomato.jpg
+    - assets/mushroom.jpg
+    - assets/Group.png
     - assets/images/
 
   # The following line ensures that the Material Icons font is
