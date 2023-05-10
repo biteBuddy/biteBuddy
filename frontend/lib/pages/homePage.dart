@@ -18,7 +18,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    restaurantAPI.getRestaurants();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(

@@ -32,7 +32,7 @@ class FoodInfo extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(food.img))),
+                              image: AssetImage("assets/${food.img}"))),
                     ),
                     Positioned(
                       right: 10,
@@ -92,7 +92,7 @@ class FoodInfo extends ConsumerWidget {
                           style: CustomTheme().priceInfo1,
                         ),
                         Text(
-                          "${food.price}",
+                          "${food.nutrient.price}",
                           style: CustomTheme().priceInfo2,
                         ),
                       ],
@@ -145,7 +145,7 @@ class FoodInfo extends ConsumerWidget {
                   height: 7,
                 ),
                 Text(
-                  food.desc,
+                  food.description,
                   textAlign: TextAlign.justify,
                   style: CustomTheme().pageDesc,
                 ),
@@ -153,7 +153,7 @@ class FoodInfo extends ConsumerWidget {
                   height: 10,
                 ),
                 NutientsValue(
-                  nutriValue: food.nutrients,
+                  nutriValue: food.nutrient,
                 ),
               ],
             ),

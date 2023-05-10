@@ -54,16 +54,16 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
-  void loadDataFromLocalStorage() {
-    String value = sharedPreferences!.getString("hey") ?? "";
-    print(value);
-  }
+  // void loadDataFromLocalStorage() {
+  //   String value = sharedPreferences!.getString("hey") ?? "";
+  //   print(value);
+  // }
 
-  void loadDataToLocalStorage(Food food) async {
-    print(jsonEncode(food.toMap()).runtimeType);
-  }
+  // void loadDataToLocalStorage(Food food) async {
+  //   print(jsonEncode(food.toMap()).runtimeType);
+  // }
 
-  void removeDataFromLocalStorage() {
-    sharedPreferences!.remove("hey");
-  }
+  // void removeDataFromLocalStorage() {
+  //   sharedPreferences!.remove("hey");
+  // }
 }

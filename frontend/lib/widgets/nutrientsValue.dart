@@ -4,7 +4,7 @@ import 'package:frontend/common/theme.dart';
 
 class NutientsValue extends StatefulWidget {
   NutientsValue({super.key, required this.nutriValue});
-  Nutrients nutriValue;
+  Nutrient nutriValue;
   @override
   State<NutientsValue> createState() => _NutientsValueState();
 }
@@ -23,23 +23,23 @@ class _NutientsValueState extends State<NutientsValue> {
         SizedBox(
           height: 12,
         ),
-        Nutri(title: "Mass", value: 200),
+        Nutri(title: "Mass", value: widget.nutriValue.massInG),
         SizedBox(
           height: 12,
         ),
-        Nutri(title: "Calories", value: 100),
+        Nutri(title: "Calories", value: widget.nutriValue.calories),
         SizedBox(
           height: 12,
         ),
-        Nutri(title: "Protein", value: 10),
+        Nutri(title: "Protein", value: widget.nutriValue.protein),
         SizedBox(
           height: 12,
         ),
-        Nutri(title: "Fat", value: 5),
+        Nutri(title: "Fat", value: widget.nutriValue.fat),
         SizedBox(
           height: 12,
         ),
-        Nutri(title: "Carbohydrates", value: 4)
+        Nutri(title: "Carbohydrates", value: widget.nutriValue.carbs)
       ],
     );
   }
@@ -72,7 +72,7 @@ class Nutri extends StatelessWidget {
           ],
         ),
         Text(
-          "${value} g.",
+          "${value} ${title == "Calories" ? "" : "g"}",
           style: TextStyle(
               fontFamily: "Poppins",
               fontSize: 16,

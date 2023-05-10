@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:frontend/ApiSerives/cart.dart';
 import 'package:frontend/Cart/pages/checkoutPage.dart';
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/theme.dart';
@@ -24,16 +27,17 @@ class _CartMainState extends ConsumerState<CartMain> {
 
   @override
   Widget build(BuildContext context) {
-    Nutrients nutri =
-        Nutrients(calories: 200, mass_in_g: 50, protien: 8, carbs: 5, fat: 1);
+    Nutrient nutri = Nutrient(
+        calories: 200, massInG: 50, protein: 8, carbs: 5, fat: 1, price: 350);
     Food food = Food(
-      id:"asdf",
+        id: "asdfg",
         name: "Chicken Burger",
         img: "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg",
-        desc:
+        description:
             "Minced Meat seared and kept between burgers with cheese tomato mayo and much more all suited for your taste buds.",
-        price: 250,
-        nutrients: nutri);
+        nutrient: nutri,
+        restaurantId: "asdfa");
+
     final cart = ref.watch(CartProvider);
     cart.initSharedPreferences();
     final Map<Food, int> _cartItems = cart.cartItem;
@@ -48,7 +52,7 @@ class _CartMainState extends ConsumerState<CartMain> {
 
     //get Total Price
     _cartItems.forEach((key, value) {
-      _prices["subTotal"] = _prices["subTotal"]! + value * key.price;
+      _prices["subTotal"] = _prices["subTotal"]! + value * key.nutrient.price;
     });
     // get Tax
     _prices["Tax"] = _prices["subTotal"]! * 0.01;
@@ -180,11 +184,21 @@ class _CartMainState extends ConsumerState<CartMain> {
                               color: CustomTheme().primaryColor1,
                               borderRadius: BorderRadius.circular(30)),
                           child: TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => Checkout())));
+                              onPressed: () async {
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: ((context) => Checkout())));
+                                try {
+                                  await initPaymentSheet();
+
+                                  await Stripe.instance.presentPaymentSheet();
+                                  print("Payment Successfull");
+                                } on StripeException catch (e) {
+                                  Fluttertoast.showToast(msg: e.toString());
+                                } catch (e) {
+                                  Fluttertoast.showToast(msg: e.toString());
+                                }
                               },
                               child: Text(
                                 "Checkout",

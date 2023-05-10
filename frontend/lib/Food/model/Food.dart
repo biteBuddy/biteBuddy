@@ -1,61 +1,78 @@
-// class to store the nutrients value in a food
-class Nutrients {
-  Nutrients(
-      {required this.calories,
-      required this.mass_in_g,
-      required this.protien,
-      required this.carbs,
-      required this.fat});
-  late double calories, mass_in_g, protien, carbs, fat;
+// To parse this JSON data, do
+//
+//     final Food = FoodFromJson(jsonString);
 
-  Nutrients.fromMap(Map map) {
-    calories = map['calories'] as double;
-    protien = map['protien'] as double;
-    carbs = map['carbs'] as double;
-    fat = map['fat'] as double;
-    mass_in_g = map['mass_in_g'] as double;
-  }
-  Map toMap() {
-    return {
-      "calories": calories,
-      "protien": protien,
-      "carbs": carbs,
-      "fat": fat,
-      "mass_in_g": mass_in_g,
-    };
-  }
+import 'package:meta/meta.dart';
+import 'dart:convert';
+
+List<Food> FoodFromJson(String str) =>
+    List<Food>.from(json.decode(str).map((x) => Food.fromJson(x)));
+
+class Food {
+  String id;
+  String name;
+  String description;
+  String img;
+  String restaurantId;
+  Nutrient nutrient;
+
+  Food({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.img,
+    required this.restaurantId,
+    required this.nutrient,
+  });
+
+  factory Food.fromJson(Map<String, dynamic> json) => Food(
+        id: json["_id"] ?? "",
+        name: json["name"] ?? "",
+        description: json["description"] ?? "",
+        img: json["img"] ?? "",
+        restaurantId: json["restaurantd"] ?? "",
+        nutrient: Nutrient.fromJson(json["nutrient"] ?? ""),
+      );
 }
 
-// class to store information about the food
-class Food {
-  Food(
-      {required this.name,
-      required this.id,
-      required this.desc,
-      required this.img,
-      required this.price,
-      required this.nutrients});
-  late String name, img, desc;
-  late double price;
-  late Nutrients nutrients;
-  late String id;
+class Nutrient {
+  double massInG;
+  double calories;
+  double protein;
+  double carbs;
+  double fat;
+  double price;
 
-  Food.fromMap(Map map) {
-    id = map['id'] as String;
-    name = map['name'] as String;
-    desc = map['desc'] as String;
-    img = map['img'] as String;
-    price = map['price'] as double;
-    nutrients = Nutrients.fromMap(map['nutrients'].toMap()) as Nutrients;
-  }
-  Map toMap() {
-    return {
-      "name": name,
-      "id": id,
-      "desc": desc,
-      "img": img,
-      "price": price,
-      "nutrients": nutrients.toMap(),
-    };
-  }
+  Nutrient({
+    required this.massInG,
+    required this.calories,
+    required this.protein,
+    required this.carbs,
+    required this.fat,
+    required this.price,
+  });
+
+  factory Nutrient.fromJson(Map<String, dynamic> json) => Nutrient(
+        massInG: Calories.doublefromJson(json["mass_in_g"]) as double,
+        calories: Calories.doublefromJson(json["calories"]) as double,
+        protein: Calories.doublefromJson(json["protein"]) as double,
+        carbs: Calories.doublefromJson(json["carbs"]) as double,
+        fat: Calories.doublefromJson(json["fat"]) as double,
+        price: Calories.doublefromJson(json["price"]) as double,
+      );
+}
+
+class Calories {
+  double numberDecimal;
+
+  Calories({
+    required this.numberDecimal,
+  });
+
+  static doublefromJson(Map<String, dynamic> json) =>
+      double.parse(json["\$numberDecimal"]);
+
+  Map<String, dynamic> toJson() => {
+        "\$numberDecimal": numberDecimal,
+      };
 }

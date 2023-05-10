@@ -7,6 +7,8 @@ const restaurantRouter = require('./routers/restaurant.router');
 const foodRouter = require('./routers/food.router');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const cartRotuer = require('./routers/cart.router');
+const orderRouter = require('./routers/order.router');
+const paymentRouter = require('./routers/stripe.router');
 const notFoundMiddleware = require('./middleware/not-found');
 const authMiddleWare = require('./middleware/authentication');
 const app = express(); // making use of variable app to import the module (like creating instance//importing the files in the folder
@@ -23,6 +25,8 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/restaurant', restaurantRouter);
 app.use('/api/v1/food', foodRouter);
 app.use('/api/v1/cart', authMiddleWare, cartRotuer);
+app.use('/api/v1/order', authMiddleWare, orderRouter);
+app.use('/api/v1/payment', authMiddleWare, paymentRouter);
 //middleware to catch error
 app.use(errorHandlerMiddleware);
 app.use(notFoundMiddleware);

@@ -16,7 +16,9 @@ class FavFood extends ConsumerWidget {
     return Column(
       children: [
         ...foods.map(
-          (e) => SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
+          (e) => SingleFood(
+            food: e,
+          ),
         )
       ],
     );

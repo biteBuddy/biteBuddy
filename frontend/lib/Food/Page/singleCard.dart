@@ -8,22 +8,13 @@ import 'package:frontend/common/theme.dart';
 import 'package:frontend/main.dart';
 
 class SingleFood extends ConsumerWidget {
-  SingleFood({super.key, required List<String> this.ingredients});
-  List<String> ingredients;
+  SingleFood({super.key, required this.food});
+  Food food;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var addFood = ref.watch(FavRestroProvider).addFaveFood;
-    Nutrients nutri =
-        Nutrients(calories: 200, mass_in_g: 50, protien: 8, carbs: 5, fat: 1);
-    Food food = Food(
-        id: "asdfg",
-        name: "Chicken Burger",
-        img: "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg",
-        desc:
-            "Minced Meat seared and kept between burgers with cheese tomato mayo and much more all suited for your taste buds.",
-        price: 250,
-        nutrients: nutri);
+
     return GestureDetector(
       onDoubleTap: () {
         Navigator.push(
@@ -53,13 +44,12 @@ class SingleFood extends ConsumerWidget {
                       Container(
                         height: 180,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg"),
+                                image: AssetImage("assets/${food.img}"),
                                 fit: BoxFit.fitWidth)),
                       ),
                       Positioned(

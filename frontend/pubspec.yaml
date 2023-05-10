@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.1.0
   dio: ^5.1.1
   fluttertoast: ^8.2.1
+  flutter_stripe: ^9.2.0
 
 dev_dependencies:
   flutter_test:

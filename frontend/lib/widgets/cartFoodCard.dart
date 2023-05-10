@@ -25,13 +25,14 @@ class CartCard extends ConsumerWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
-                    image: NetworkImage(food.img), fit: BoxFit.cover)),
+                    image: AssetImage("assets/${food.img}"), fit: BoxFit.cover)),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
+                overflow: TextOverflow.ellipsis,
                 food.name,
                 style: CustomTheme().cardTitle,
               ),
@@ -46,7 +47,7 @@ class CartCard extends ConsumerWidget {
                     style: CustomTheme().priceInfo1,
                   ),
                   Text(
-                    "${food.price}",
+                    "${food.nutrient.price}",
                     style: CustomTheme().priceInfo2,
                   ),
                 ],
@@ -70,7 +71,6 @@ class CartCard extends ConsumerWidget {
                 children: [
                   GestureDetector(
                     onTap: (() {
-                      cart.loadDataFromLocalStorage();
                       cart.decreaseItem(food);
                     }),
                     child: Icon(
@@ -92,7 +92,6 @@ class CartCard extends ConsumerWidget {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      cart.loadDataToLocalStorage(food);
                       cart.increaseItem(food);
                     },
                     child: Icon(
