@@ -9,8 +9,10 @@ exports.register = async (req, res) => {
 };
 //login
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await UserServices.checkuser(email);
+  try{
+
+    const { email, password } = req.body;
+    const user = await UserServices.checkuser(email);
   if (!user) {
     throw new Error("User doesn't exist");
   }
@@ -19,11 +21,16 @@ exports.login = async (req, res) => {
     throw new Error('Invalid Password!');
   }
   let tokenData = { userId: user._id, email: user.email };
-
+  
   const token = await UserServices.generateToken(
     tokenData,
     process.env.JWT_SECRET,
     process.env.JWT_EXPIRES_IN
-  );
-  res.status(200).json({ status: true, token: token });
+    );
+    res.status(200).json({ status: true, token: token });
+  }
+  catch(error){
+    console.log(error);
+
+  }
 };

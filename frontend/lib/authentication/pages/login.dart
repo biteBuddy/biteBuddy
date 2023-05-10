@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
   static const String _title = 'Sample App';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
@@ -53,6 +53,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   }
 
   void loginUser() async {
+    
     if (loginEmailController.text.isNotEmpty &&
         loginPasswordController.text.isNotEmpty) {
       var logBody = {
@@ -75,11 +76,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             ),
           ),
         );
-      } else {
+      } 
+        }
+      else {
         Fluttertoast.showToast(msg: "User doesn't exist!");
         print('error');
       }
-    }
+    
   }
 
   Widget build(BuildContext context) {
@@ -107,17 +110,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: const TextField(
+            child:  TextField(
+              controller: loginEmailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'User Name',
+                labelText: 'Email',
+                
               ),
             ),
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-            child: const TextField(
+            child: TextField(
               obscureText: true,
+              controller: loginPasswordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Password',
@@ -150,12 +156,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
               ),
               child: const Text('Login'),
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const NavigationPage(),
-                  ),
-                );
+                loginUser();
               },
             ),
           ),
@@ -174,8 +175,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                   'Sign Up',
                   style: TextStyle(fontSize: 22, fontFamily: "NanumPenScript"),
                 ),
-                onPressed: () async {
-                  loginUser();
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignupPage(),
+                    ),
+                  );
                 },
               ),
             ],
