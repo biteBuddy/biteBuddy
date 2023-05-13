@@ -1,3 +1,4 @@
+const { compareSync } = require('bcrypt');
 const { foodData } = require('../data');
 const Food = require('../model/food.model');
 const { nutrientModel } = require('../model/nutrient.model');
@@ -39,9 +40,21 @@ const getSingleFood = async (req, res) => {
   const food = await Food.findById(id);
   res.status(200).json({ success: true, data: food });
 };
+const searchFood = async (req, res) => {
+  const { searchTerm } = req.query;
+  console.log(searchTerm);
+  const foods = await Food.find({
+    name: {
+      $regex: searchTerm,
+      $options: 'i',
+    },
+  });
+  res.status(200).json({ success: true, data: foods });
+};
 module.exports = {
   createFood,
   getFoodOfRestaurant,
   getFoods,
   getSingleFood,
+  searchFood,
 };

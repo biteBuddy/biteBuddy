@@ -16,8 +16,21 @@ const getRestaurant = async (req, res) => {
   const singleRestaurant = await restaurant.findById(id);
   res.status(200).json({ success: true, data: singleRestaurant });
 };
+const searchRestaurant = async (req, res) => {
+  const { searchTerm } = req.query;
+
+  console.log(searchTerm);
+  const foods = await restaurant.find({
+    name: {
+      $regex: searchTerm,
+      $options: 'i',
+    },
+  });
+  res.status(200).json({ success: true, data: foods });
+};
 module.exports = {
   createRestaurant,
   getRestaurants,
   getRestaurant,
+  searchRestaurant,
 };

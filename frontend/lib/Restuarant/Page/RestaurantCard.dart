@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,6 +35,7 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 0.1,
         child: Container(
+          width: MediaQuery.of(context).size.width - 20 - 5,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Stack(children: [
             Column(
@@ -55,13 +57,20 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
                   height: 15,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20, bottom: 10),
+                  margin: EdgeInsets.only(left: 5, bottom: 10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         widget.restaurantInfo.name,
                         style: CustomTheme().cardTitle,
-                      )
+                      ),
+                      AutoSizeText(
+                        widget.restaurantInfo.description,
+                        style: CustomTheme().cardDesc,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ],
                   ),
                 )

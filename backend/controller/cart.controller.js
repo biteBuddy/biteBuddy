@@ -27,12 +27,13 @@ const updateCart = async (req, res) => {
   //logic to check if the item already exists in the
   var itemsArray = userCart.items; // get items in the array of the user
   const itemIndex = itemsArray.findIndex((item) => item._id == itemId);
+  var item;
   //if exists simply update the quantity
   if (itemIndex > -1) {
-    var item = await itemModel.findOne({ _id: itemId });
-    console.log(item);
+    item = await itemModel.findOne({ _id: itemId });
     item.quantity = quantity;
     item.save();
+
     userCart.items[itemIndex] = item;
     userCart.save();
   } // else find if the foodId provided exists and create a new item with the foodId
@@ -41,11 +42,11 @@ const updateCart = async (req, res) => {
     if (!food) {
       throw Error('Food with the given Id doesnot exist.');
     }
-    const item = await itemModel.create({ foodId: foodId, quantity: quantity });
+    item = await itemModel.create({ foodId: foodId, quantity: quantity });
     userCart.items.push(item);
     userCart.save();
   }
-  res.status(200).json({ success: true, cart: userCart });
+  res.status(200).json({ success: true, item: item });
 };
 const checkOut = async (req, res) => {
   //Logic to Transfer all the items of the user into order after user checkouts the cart
@@ -77,5 +78,20 @@ const checkOut = async (req, res) => {
     oder: newOrder,
   });
 };
+const removeFromCart = async (req, res) => {
+  const {
+    user: { userId },
+    body: { itemId },
+  } = req;
+  const item = await itemModel.findById(itemId);
+  const cart = await cartModel.findOne({ createdBy: userId });
+  var itemsArray = cart.items; // get items in the array of the user
+  const itemIndex = itemsArray.findIndex((item) => item._id == itemId);
+  itemsArray.splice(itemIndex, 1);
+  cart.items = itemsArray;
+  cart.save();
 
-module.exports = { updateCart, getFromCart, checkOut };
+  const deletedItem = await itemModel.deleteOne({ _id: itemId });
+  return res.status(200).json({ success: true, msg: 'Item is Deleted' });
+};
+module.exports = { updateCart, getFromCart, checkOut, removeFromCart };

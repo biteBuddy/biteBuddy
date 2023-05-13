@@ -14,6 +14,7 @@ const authMiddleWare = require('./middleware/authentication');
 const app = express(); // making use of variable app to import the module (like creating instance//importing the files in the folder
 const db = require('./config/db');
 const UserModel = require('./model/user.model');
+const addrressRouter = require('./routers/address.router');
 
 //running the project and checking if it works
 const port = 3000;
@@ -25,6 +26,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/restaurant', restaurantRouter);
 app.use('/api/v1/food', foodRouter);
 app.use('/api/v1/cart', authMiddleWare, cartRotuer);
+app.use('/api/v1/address',authMiddleWare,addrressRouter)
 app.use('/api/v1/order', authMiddleWare, orderRouter);
 app.use('/api/v1/payment', authMiddleWare, paymentRouter);
 //middleware to catch error

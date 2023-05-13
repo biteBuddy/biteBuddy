@@ -77,7 +77,7 @@ class CustomTheme {
       fontFamily: "Poppins",
       fontWeight: FontWeight.w400,
       color: Colors.grey,
-      letterSpacing: -1);
+      letterSpacing: 1);
   TextStyle totalPrice = const TextStyle(
       fontSize: 16,
       fontFamily: "Poppins",

@@ -33,10 +33,49 @@ class _RestaurantsState extends State<Restaurants> {
                 List<Restaurant> _allRes = snapshot.data as List<Restaurant>;
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      ..._allRes.map((e) => RestaurantCard(restaurantInfo: e))
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: Icon(Icons.arrow_back_ios)),
+                            Center(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Restaurants",
+                                  style: CustomTheme().pageTitle,
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 5,
+                                  height: 2.5,
+                                  color: CustomTheme().primaryColor1,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "\"Explore Between Various Restuarants.\"",
+                                  style: CustomTheme()
+                                      .cardDesc
+                                      .copyWith(fontSize: 13),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ))
+                          ],
+                        ),
+                        ..._allRes.map((e) => RestaurantCard(restaurantInfo: e))
+                      ],
+                    ),
                   ),
                 );
               }

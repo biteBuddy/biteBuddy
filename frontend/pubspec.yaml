@@ -45,6 +45,9 @@ dependencies:
   dio: ^5.1.1
   fluttertoast: ^8.2.1
   flutter_stripe: ^9.2.0
+  flutter_secure_storage: ^8.0.0
+  auto_size_text: ^3.0.0
+  intl_phone_number_input: ^0.7.2
 
 dev_dependencies:
   flutter_test:
@@ -63,28 +66,29 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-    - assets/fast_food.jpg
-    - assets/bistro.jpg
-    - assets/buffet.jpg
-    - assets/cafe.jpg
-    - assets/fine_dining.jpg
-    - assets/buff.jpg
-    - assets/cheese.jpg
-    - assets/chicken.jpg
-    - assets/chilly.jpg
-    - assets/eggs.jpg
-    - assets/garlic.jpg
-    - assets/honey.jpg
-    - assets/mayo.jpg
-    - assets/milk.jpg
-    - assets/mushroom.jpg
-    - assets/mutton.jpg
-    - assets/onion.jpg
-    - assets/rice.jpg
-    - assets/spinach.jpg
-    - assets/tomato.jpg
-    - assets/mushroom.jpg
-    - assets/Group.png
+    - assets/
+    - fast_food.jpg
+    - bistro.jpg
+    - buffet.jpg
+    - cafe.jpg
+    - fine_dining.jpg
+    - buff.jpg
+    - cheese.jpg
+    - chicken.jpg
+    - chilly.jpg
+    - eggs.jpg
+    - garlic.jpg
+    - honey.jpg
+    - mayo.jpg
+    - milk.jpg
+    - mushroom.jpg
+    - mutton.jpg
+    - onion.jpg
+    - rice.jpg
+    - spinach.jpg
+    - tomato.jpg
+    - mushroom.jpg
+    - Group.png
     - assets/images/
 
   # The following line ensures that the Material Icons font is

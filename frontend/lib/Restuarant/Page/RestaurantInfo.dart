@@ -21,7 +21,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
     Food food = Food(
         id: "asdfg",
         name: "Chicken Burger",
-        img: "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg",
+        img: "burger.jpeg",
         description:
             "Minced Meat seared and kept between burgers with cheese tomato mayo and much more all suited for your taste buds.",
         nutrient: nutri,

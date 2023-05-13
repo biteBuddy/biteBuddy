@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/ApiSerives/token.dart';
 import 'package:frontend/authentication/pages/forgotpassword.dart';
 import 'package:frontend/authentication/pages/signup.dart';
 import '../../pages/bottomNav.dart';
@@ -53,20 +54,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   }
 
   void loginUser() async {
-    
     if (loginEmailController.text.isNotEmpty &&
         loginPasswordController.text.isNotEmpty) {
       var logBody = {
         "email": loginEmailController.text,
         "password": loginPasswordController.text
       };
-      var response = await http.post(Uri.parse(login),
+      var response = await http.post(
+          Uri.parse("http://localhost:3000/api/v1/user/login"),
           headers: {"Content-Type": "application/json"},
           body: jsonEncode(logBody));
       var jsonResponse = jsonDecode(response.body);
       if (jsonResponse['status'] == true) {
         var logToken = jsonResponse['token'];
         prefs.setString('token', logToken);
+        await Token().setToken(logToken);
         // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
@@ -76,13 +78,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             ),
           ),
         );
-      } 
-        }
-      else {
-        Fluttertoast.showToast(msg: "User doesn't exist!");
-        print('error');
       }
-    
+    } else {
+      Fluttertoast.showToast(msg: "User doesn't exist!");
+      print('error');
+    }
   }
 
   Widget build(BuildContext context) {
@@ -110,12 +110,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child:  TextField(
+            child: TextField(
               controller: loginEmailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Email',
-                
               ),
             ),
           ),

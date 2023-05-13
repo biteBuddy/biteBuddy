@@ -18,18 +18,3 @@ class restaurantAPI {
     } catch (e) {}
   }
 }
-
-class FoodAPI {
-  static Future getFoods() async {
-    try {
-      final response =
-          await restaurantDio.get("http://localhost:3000/api/v1/food");
-
-      List<Food> _res = (FoodFromJson(jsonEncode(response.data['data'])));
-
-      return _res;
-    } catch (e) {
-      print(e);
-    }
-  }
-}

@@ -38,7 +38,7 @@ class FoodInfo extends ConsumerWidget {
                       right: 10,
                       top: 10,
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           addFood(food);
                         },
                         child: CircleAvatar(
@@ -97,15 +97,15 @@ class FoodInfo extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    cart.cartItem.containsKey(food)
+                    cart.itemExistInList(food.id) != -1
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               IconButton(
                                 splashRadius: 1,
-                                onPressed: () {
-                                  cart.decreaseItem(food);
+                                onPressed: () async {
+                                  await cart.decreaseItem(food.id, food);
                                 },
                                 icon: Icon(
                                   Icons.remove_circle_outline,
@@ -117,7 +117,7 @@ class FoodInfo extends ConsumerWidget {
                                 width: 4,
                               ),
                               Text(
-                                "${cart.cartItem[food]}",
+                                "${cart.getCount(food.id)}",
                                 style: TextStyle(
                                     color: CustomTheme().primaryColor2,
                                     fontSize: 20),
@@ -127,8 +127,8 @@ class FoodInfo extends ConsumerWidget {
                               ),
                               IconButton(
                                 splashRadius: 1,
-                                onPressed: (() {
-                                  cart.increaseItem(food);
+                                onPressed: (() async {
+                                  await cart.increaseItem(food.id, food);
                                 }),
                                 icon: Icon(
                                   Icons.add_circle,
@@ -159,8 +159,8 @@ class FoodInfo extends ConsumerWidget {
             ),
             Center(
               child: GestureDetector(
-                onTap: () {
-                  cart.addToCart(food);
+                onTap: () async {
+                  await cart.addToCart(food.id, food);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(13),

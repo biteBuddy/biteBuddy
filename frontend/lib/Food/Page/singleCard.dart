@@ -114,7 +114,7 @@ class SingleFood extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Food Name",
+                              food.name,
                               style: CustomTheme().cardTitle,
                             ),
                           ],

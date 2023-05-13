@@ -1,0 +1,12 @@
+const Map<String, int> discount_codes = {
+  'SPRINGSAVINGS': 15,
+  'FIRSTTIME': 20,
+  'REFERFRIENDS': 17,
+  'SUMMERDEALS': 30,
+  'FREESHIPPING': 10,
+  'BACKTOSCHOOL': 13,
+  'HOLIDAYSALE': 11,
+  'FLASHSALE': 14,
+  'LOYALTY10': 16,
+  'BUNDLE10': 24,
+};
