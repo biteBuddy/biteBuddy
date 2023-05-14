@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/Food/Page/FoodInfo.dart';
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 
-class SingleFood extends StatefulWidget {
-  SingleFood({super.key, required List<String> this.ingredients});
-  List<String> ingredients;
-  @override
-  State<SingleFood> createState() => _SingleFoodState();
-}
+class SingleFood extends ConsumerWidget {
+  SingleFood({super.key, required this.food});
+  Food food;
 
-class _SingleFoodState extends State<SingleFood> {
   @override
-  Widget build(BuildContext context) {
-    Nutrients nutri =
-        Nutrients(calories: 200, mass_in_g: 50, protien: 8, carbs: 5, fat: 1);
-    Food food = Food(
-        name: "Chicken Burger",
-        img: "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg",
-        desc:
-            "Minced Meat seared and kept between burgers with cheese tomato mayo and much more all suited for your taste buds.",
-        price: 250,
-        nutrients: nutri);
+  Widget build(BuildContext context, WidgetRef ref) {
+    var addFood = ref.watch(FavRestroProvider).addFaveFood;
+
     return GestureDetector(
       onDoubleTap: () {
         Navigator.push(
@@ -53,13 +44,12 @@ class _SingleFoodState extends State<SingleFood> {
                       Container(
                         height: 180,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
                             image: DecorationImage(
-                                image: NetworkImage(
-                                    "https://burgerburger.co.nz/wp-content/uploads/2020/01/BC.jpg"),
+                                image: AssetImage("assets/${food.img}"),
                                 fit: BoxFit.fitWidth)),
                       ),
                       Positioned(
@@ -72,7 +62,7 @@ class _SingleFoodState extends State<SingleFood> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           child: Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 8, vertical: 5),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15)),
@@ -99,10 +89,15 @@ class _SingleFoodState extends State<SingleFood> {
                       Positioned(
                         right: 10,
                         top: 10,
-                        child: CircleAvatar(
-                          backgroundColor: CustomTheme().primaryColor1,
-                          foregroundColor: Colors.white,
-                          child: Icon(Icons.favorite),
+                        child: GestureDetector(
+                          onTap: () {
+                            addFood(food);
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: CustomTheme().primaryColor1,
+                            foregroundColor: Colors.white,
+                            child: Icon(Icons.favorite),
+                          ),
                         ),
                       )
                     ],
@@ -119,7 +114,7 @@ class _SingleFoodState extends State<SingleFood> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Food Name",
+                              food.name,
                               style: CustomTheme().cardTitle,
                             ),
                           ],

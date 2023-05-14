@@ -12,7 +12,7 @@ class FoodInfo extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var cart = ref.watch(CartProvider);
-
+    var addFood = ref.watch(FavRestroProvider).addFaveFood;
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -32,15 +32,20 @@ class FoodInfo extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(food.img))),
+                              image: AssetImage("assets/${food.img}"))),
                     ),
                     Positioned(
                       right: 10,
                       top: 10,
-                      child: CircleAvatar(
-                        backgroundColor: CustomTheme().primaryColor1,
-                        foregroundColor: Colors.white,
-                        child: Icon(Icons.favorite),
+                      child: GestureDetector(
+                        onTap: () async {
+                          addFood(food);
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: CustomTheme().primaryColor1,
+                          foregroundColor: Colors.white,
+                          child: const Icon(Icons.favorite),
+                        ),
                       ),
                     ),
                     Positioned(
@@ -87,20 +92,20 @@ class FoodInfo extends ConsumerWidget {
                           style: CustomTheme().priceInfo1,
                         ),
                         Text(
-                          "${food.price}",
+                          "${food.nutrient.price}",
                           style: CustomTheme().priceInfo2,
                         ),
                       ],
                     ),
-                    cart.cartItem.containsKey(food)
+                    cart.itemExistInList(food.id) != -1
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               IconButton(
                                 splashRadius: 1,
-                                onPressed: () {
-                                  cart.decreaseItem(food);
+                                onPressed: () async {
+                                  await cart.decreaseItem(food.id, food);
                                 },
                                 icon: Icon(
                                   Icons.remove_circle_outline,
@@ -112,7 +117,7 @@ class FoodInfo extends ConsumerWidget {
                                 width: 4,
                               ),
                               Text(
-                                "${cart.cartItem[food]}",
+                                "${cart.getCount(food.id)}",
                                 style: TextStyle(
                                     color: CustomTheme().primaryColor2,
                                     fontSize: 20),
@@ -122,8 +127,8 @@ class FoodInfo extends ConsumerWidget {
                               ),
                               IconButton(
                                 splashRadius: 1,
-                                onPressed: (() {
-                                  cart.increaseItem(food);
+                                onPressed: (() async {
+                                  await cart.increaseItem(food.id, food);
                                 }),
                                 icon: Icon(
                                   Icons.add_circle,
@@ -133,14 +138,14 @@ class FoodInfo extends ConsumerWidget {
                               )
                             ],
                           )
-                        : Text("")
+                        : const Text("")
                   ],
                 ),
                 const SizedBox(
                   height: 7,
                 ),
                 Text(
-                  food.desc,
+                  food.description,
                   textAlign: TextAlign.justify,
                   style: CustomTheme().pageDesc,
                 ),
@@ -148,17 +153,17 @@ class FoodInfo extends ConsumerWidget {
                   height: 10,
                 ),
                 NutientsValue(
-                  nutriValue: food.nutrients,
+                  nutriValue: food.nutrient,
                 ),
               ],
             ),
             Center(
               child: GestureDetector(
-                onTap: () {
-                  cart.addToCart(food);
+                onTap: () async {
+                  await cart.addToCart(food.id, food);
                 },
                 child: Container(
-                  padding: EdgeInsets.all(13),
+                  padding: const EdgeInsets.all(13),
                   width: MediaQuery.of(context).size.width / 2,
                   decoration: BoxDecoration(
                       color: CustomTheme().primaryColor1,

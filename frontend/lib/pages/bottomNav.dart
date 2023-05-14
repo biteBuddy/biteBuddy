@@ -10,7 +10,8 @@ import 'homePage.dart';
 import '../Favorites/pages/favorites.dart';
 
 class NavigationPage extends StatefulWidget {
-  const NavigationPage({super.key});
+  final token;
+  const NavigationPage({Key? key, @required this.token}): super(key:key);
 
   @override
   State<NavigationPage> createState() => _NavigationPageState();
@@ -18,7 +19,6 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   void _handleTap(int x) {
-    print(x);
     setState(() {
       _selectedIndex = x;
     });
@@ -30,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
     CartMain(),
     Search(),
     Favorites(),
-    ProfileSection()
+    // ProfileSection()
   ];
   @override
   Widget build(BuildContext context) {
@@ -74,10 +74,10 @@ class _NavigationPageState extends State<NavigationPage> {
               icon: Icon(Icons.favorite_outlined),
               label: ".",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: ".",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person),
+            //   label: ".",
+            // ),
           ],
           currentIndex: _selectedIndex,
           onTap: _handleTap,

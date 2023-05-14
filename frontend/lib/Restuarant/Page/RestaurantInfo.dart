@@ -1,14 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:frontend/Food/model/Food.dart';
+import 'package:frontend/Restuarant/model/restaurant.dart';
 import 'package:frontend/common/theme.dart';
 import 'package:frontend/Food/Page/singleCard.dart';
 
 class RestaurantDetails extends StatefulWidget {
-  const RestaurantDetails({super.key});
-
+  RestaurantDetails({super.key, required this.resInfo});
+  Restaurant resInfo;
   @override
   State<RestaurantDetails> createState() => _RestaurantDetailsState();
 }
@@ -16,6 +16,17 @@ class RestaurantDetails extends StatefulWidget {
 class _RestaurantDetailsState extends State<RestaurantDetails> {
   @override
   Widget build(BuildContext context) {
+    Nutrient nutri = Nutrient(
+        calories: 200, massInG: 50, protein: 8, carbs: 5, fat: 1, price: 350);
+    Food food = Food(
+        id: "asdfg",
+        name: "Chicken Burger",
+        img: "burger.jpeg",
+        description:
+            "Minced Meat seared and kept between burgers with cheese tomato mayo and much more all suited for your taste buds.",
+        nutrient: nutri,
+        restaurantId: "asdfa");
+
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
@@ -32,8 +43,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(
-                                "https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA="))),
+                            image: AssetImage("assets/${widget.resInfo.img}"))),
                   ),
                   Positioned(
                     right: 10,
@@ -67,7 +77,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Hyatt Place", style: CustomTheme().pageTitle),
+                  Text(widget.resInfo.name, style: CustomTheme().pageTitle),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -93,7 +103,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                   color: CustomTheme().categoryColor["fine_dining"],
                 ),
                 child: Text(
-                  "Fine Dining",
+                  widget.resInfo.category,
                   style: TextStyle(color: Colors.white),
                 ),
               ),
@@ -101,7 +111,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 height: 15,
               ),
               Text(
-                "Some sort of information about the restaurant that reflects its identity.This section will be able to pull in customer.And keep them on this page of the app. Be sure to provide a stunning description for the restaurant.",
+                widget.resInfo.description,
                 textAlign: TextAlign.justify,
                 style: CustomTheme().pageDesc,
               ),
@@ -122,15 +132,21 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
@@ -160,23 +176,33 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                     SizedBox(
                       width: 8,
                     ),
-                    SingleFood(ingredients: ["Chicken", "Cheese", "Tomato"]),
+                    SingleFood(
+                      food: food,
+                    ),
                   ],
                 ),
               ),

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:frontend/Cart/pages/checkoutPage.dart';
 import 'package:frontend/Cart/provider/CartProvider.dart';
 import 'package:frontend/Favorites/provider/favProvider.dart';
 
@@ -9,6 +11,8 @@ import 'package:frontend/pages/landingpages.dart';
 import 'package:frontend/splashScreen/loadinScreen.dart';
 
 void main() {
+  Stripe.publishableKey =
+      "pk_test_51MSI9dAkl1eBY46uH19GDjulKm1oXQpLQO7CkPd5Qk9JBHtqOoVWpwaCg5t4e1XEeUIlbRCI5ha4K0bUAOyw5TRN00WWl2by6U";
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -24,7 +28,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'biteBuddy',
-      home: const MainApp(),
+      home: MainApp(),
+      initialRoute: '/',
+      routes: {
+        '/cart/checkout': (context) => Checkout(),
+      },
     );
   }
 }

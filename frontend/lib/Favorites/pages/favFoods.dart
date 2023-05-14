@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:frontend/Favorites/provider/favProvider.dart';
 import 'package:frontend/Food/Page/singleCard.dart';
+import 'package:frontend/Food/model/Food.dart';
+import 'package:frontend/main.dart';
 
-class FavFoods extends StatefulWidget {
-  const FavFoods({super.key});
+class FavFood extends ConsumerWidget {
+  const FavFood({super.key});
 
   @override
-  State<FavFoods> createState() => _FavFoodsState();
-}
-
-class _FavFoodsState extends State<FavFoods> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-      SingleFood(ingredients: ["Cheese", "Macaroni", "Mushroom"]),
-    ]);
+  Widget build(BuildContext context, WidgetRef ref) {
+    List<Food> foods = ref.watch(FavRestroProvider).favFood;
+    return Column(
+      children: [
+        ...foods.map(
+          (e) => SingleFood(
+            food: e,
+          ),
+        )
+      ],
+    );
   }
 }

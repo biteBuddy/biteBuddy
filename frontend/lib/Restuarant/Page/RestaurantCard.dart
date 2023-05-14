@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,13 +24,18 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onDoubleTap: (() {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RestaurantDetails()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => RestaurantDetails(
+                      resInfo: widget.restaurantInfo,
+                    )));
       }),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 0.1,
         child: Container(
+          width: MediaQuery.of(context).size.width - 20 - 5,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           child: Stack(children: [
             Column(
@@ -38,10 +44,10 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
                 Container(
                   height: 200,
                   width: MediaQuery.of(context).size.width - 33,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(
-                              'https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA='),
+                          image:
+                              AssetImage("assets/${widget.restaurantInfo.img}"),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
@@ -51,13 +57,20 @@ class _RestaurantCardState extends ConsumerState<RestaurantCard> {
                   height: 15,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 20, bottom: 10),
+                  margin: EdgeInsets.only(left: 5, bottom: 10),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hyatt Place',
+                        widget.restaurantInfo.name,
                         style: CustomTheme().cardTitle,
-                      )
+                      ),
+                      AutoSizeText(
+                        widget.restaurantInfo.description,
+                        style: CustomTheme().cardDesc,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ],
                   ),
                 )

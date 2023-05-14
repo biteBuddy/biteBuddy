@@ -15,7 +15,7 @@ class Favorites extends StatefulWidget {
 
 class _FavoritesState extends State<Favorites> {
   var _selectedIndex = 0;
-  var _widgetOptions = [FavRestro(), FavFoods()];
+  var _widgetOptions = [FavRestro(), FavFood()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,7 +68,7 @@ class _FavoritesState extends State<Favorites> {
                         scrollDirection: Axis.vertical, child: FavRestro()))
                 : Expanded(
                     child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical, child: FavFoods())),
+                        scrollDirection: Axis.vertical, child: FavFood())),
           ],
         ),
       ),

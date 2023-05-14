@@ -15,11 +15,12 @@ class _TopPicksState extends State<TopPicks> {
   @override
   Widget build(BuildContext context) {
     Restaurant res = Restaurant(
-        img:
-            "https://media.istockphoto.com/id/1081422898/photo/pan-fried-duck.jpg?s=612x612&w=0&k=20&c=kzlrX7KJivvufQx9mLd-gMiMHR6lC2cgX009k9XO6VA=",
+        img: "1.jpeg",
         name: "Hyatt Place ",
-        id: "asdf",
-        description: "a");
+        id: "",
+        description:
+            "Spice up your life with the flavors of the Himalayas! At Himalayan Spice, we use traditional Nepali spices to create dishes that are as bold as they are delicious. From our spicy chicken curry to our flavorful vegetable momos, we have something for everyone. Come and enjoy the taste of the Himalayas! ",
+        category: "Cafe");
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
