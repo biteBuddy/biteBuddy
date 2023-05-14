@@ -36,17 +36,14 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  GestureDetector(
+                    onTap: (() => Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) => Address())))),
+                    child: Container(
                       width: MediaQuery.of(context).size.width / 2,
-                      child: Text("Bagmati,Kathmandu,Koteshwor,Narayan Chowk")),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => Address())));
-                      },
-                      icon: Icon(Icons.add)),
+                      child: Text("Bagmati,Kathmandu,Koteshwor,Narayan Chowk"),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(

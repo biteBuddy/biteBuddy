@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/authentication/pages/login.dart';
+import 'package:frontend/common/theme.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -80,8 +81,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 151, 196, 99),
-              ),
+                  backgroundColor: CustomTheme().primaryColor1),
               child: const Text('Reset Password'),
               onPressed: () {
                 print(emailController.text);
@@ -93,7 +93,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 151, 196, 99),
+                    backgroundColor: CustomTheme().primaryColor1,
                   ),
                   onPressed: () {
                     Navigator.pushReplacement(

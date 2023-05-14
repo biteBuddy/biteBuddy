@@ -1,3 +1,3 @@
 const url = 'http://localhost:3000/';
-const registration = url + "registration";
+const registration = url + "register";
 const login = url + "login";

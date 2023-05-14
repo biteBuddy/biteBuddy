@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:frontend/common/theme.dart';
 
 import 'login.dart';
 import 'package:http/http.dart' as http;
@@ -140,7 +141,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
             padding: const EdgeInsets.fromLTRB(8, 18, 8, 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 151, 196, 99),
+                backgroundColor: CustomTheme().primaryColor1,
               ),
               child: const Text('Sign up'),
               onPressed: () {

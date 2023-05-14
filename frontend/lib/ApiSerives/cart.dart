@@ -113,4 +113,23 @@ class CartAPI {
           textColor: Colors.white);
     }
   }
+
+  static  Future checkout (double total) async {
+    try {
+      try {
+        String token = await Token().getToken();
+        final res = await cartDio.post(
+            'http://localhost:3000/api/v1/cart/checkout',
+            options: Options(headers: {"authorization": "Bearer ${token}"}),
+            data: {"total": total});
+      } on DioError catch (e) {
+        Fluttertoast.showToast(
+            msg: e.message.toString(),
+            backgroundColor: Colors.red,
+            textColor: Colors.white);
+      }
+    } catch (e) {
+      
+    }
+  }
 }

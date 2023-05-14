@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/ApiSerives/token.dart';
 import 'package:frontend/authentication/pages/forgotpassword.dart';
 import 'package:frontend/authentication/pages/signup.dart';
+import 'package:frontend/common/theme.dart';
 import '../../pages/bottomNav.dart';
 import 'config.dart';
 import 'package:http/http.dart' as http;
@@ -151,7 +152,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 151, 196, 99),
+                backgroundColor: CustomTheme().primaryColor1,
               ),
               child: const Text('Login'),
               onPressed: () {

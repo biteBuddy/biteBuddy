@@ -30,9 +30,6 @@ class MyApp extends StatelessWidget {
       title: 'biteBuddy',
       home: MainApp(),
       initialRoute: '/',
-      routes: {
-        '/cart/checkout': (context) => Checkout(),
-      },
     );
   }
 }

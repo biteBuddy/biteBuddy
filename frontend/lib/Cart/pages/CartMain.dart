@@ -8,6 +8,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:frontend/ApiSerives/cart.dart';
 import 'package:frontend/Cart/model/cart.dart';
+import 'package:frontend/Cart/pages/checkoutPage.dart';
 
 import 'package:frontend/Food/model/Food.dart';
 import 'package:frontend/common/discountCodes.dart';
@@ -121,7 +122,7 @@ class _CartMainState extends ConsumerState<CartMain> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Card",
+                        "Cart",
                         style: CustomTheme().pageTitle,
                       ),
                       Container(
@@ -273,21 +274,24 @@ class _CartMainState extends ConsumerState<CartMain> {
                                       borderRadius: BorderRadius.circular(30)),
                                   child: TextButton(
                                       onPressed: () async {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: ((context) => Checkout())));
-                                        try {
-                                          await Stripe.instance
-                                              .presentPaymentSheet();
-                                          print("Payment Successfull");
-                                        } on StripeException catch (e) {
-                                          Fluttertoast.showToast(
-                                              msg: e.toString());
-                                        } catch (e) {
-                                          Fluttertoast.showToast(
-                                              msg: e.toString());
-                                        }
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: ((context) =>
+                                                    CreditCardPage(
+                                                      total: _prices['total'],
+                                                    ))));
+                                        // try {
+                                        //   await Stripe.instance
+                                        //       .presentPaymentSheet();
+                                        //   print("Payment Successfull");
+                                        // } on StripeException catch (e) {
+                                        //   Fluttertoast.showToast(
+                                        //       msg: e.toString());
+                                        // } catch (e) {
+                                        //   Fluttertoast.showToast(
+                                        //       msg: e.toString());
+                                        // }
                                       },
                                       child: Text(
                                         "Checkout",

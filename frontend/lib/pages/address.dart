@@ -24,30 +24,29 @@ class _AddressState extends State<Address> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Text("Address"),
-                  SizedBox(
-                    width: 7,
-                  ),
-                  Icon(
-                    Icons.map_outlined,
-                    color: CustomTheme().primaryColor1,
-                  )
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 3),
-                width: MediaQuery.of(context).size.width / 6.5,
-                height: 2.5,
-                color: CustomTheme().primaryColor1,
-              ),
-            ],
-          ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Address"),
+                SizedBox(
+                  width: 7,
+                ),
+                Icon(
+                  Icons.map_outlined,
+                  color: CustomTheme().primaryColor1,
+                )
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 3),
+              width: MediaQuery.of(context).size.width / 6.5,
+              height: 2.5,
+              color: CustomTheme().primaryColor1,
+            ),
+          ],
         ),
         foregroundColor: Colors.black,
         backgroundColor: Colors.transparent,
@@ -185,7 +184,6 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
-                      keyboardType: TextInputType.multiline,
                       minLines: 7,
                       maxLines: null,
                       decoration: InputDecoration(
