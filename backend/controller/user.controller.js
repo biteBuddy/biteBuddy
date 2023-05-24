@@ -14,27 +14,27 @@ exports.register = async (req, res) => {
 };
 //login
 exports.login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await UserServices.checkuser(email);
-    if (!user) {
-      throw new Error("User doesn't exist");
-    }
-    const isMatch = await user.comparePassword(password);
-    if (isMatch === false) {
-      throw new Error('Invalid Password!');
-    }
-    let tokenData = { userId: user._id, email: user.email };
-
-    const token = await UserServices.generateToken(
-      tokenData,
-      process.env.JWT_SECRET,
-      process.env.JWT_EXPIRES_IN
-    );
-    res.status(200).json({ status: true, token: token });
-  } catch (error) {
-    console.log(error);
+  const { email, password } = req.body;
+  const user = await UserServices.checkuser(email);
+  if (!user) {
+    throw Error("User doesn't exist");
   }
+  if (!password) {
+    throw Error('Please enter a password');
+  }
+  const isMatch = await user.comparePassword(password);
+  
+  if (isMatch === false) {
+    throw new Error('Invalid Password!');
+  }
+  let tokenData = { userId: user._id, email: user.email };
+
+  const token = await UserServices.generateToken(
+    tokenData,
+    process.env.JWT_SECRET,
+    process.env.JWT_EXPIRES_IN
+  );
+  res.status(200).json({ status: true, token: token });
 };
 
 exports.forgotPassword = async (req, res) => {
@@ -76,6 +76,7 @@ exports.changePassword = async (req, res) => {
   }
   const user = await UserModel.findOne({ email: email });
   const optUser = await otpModel.findOne({ userId: user.id });
+  console.log(otp, optUser.otp);
   if (!(otp === optUser.otp)) {
     throw Error('The otp you entered donot match');
   }
