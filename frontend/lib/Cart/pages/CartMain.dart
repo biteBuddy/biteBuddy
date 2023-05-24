@@ -274,7 +274,7 @@ class _CartMainState extends ConsumerState<CartMain> {
                                       borderRadius: BorderRadius.circular(30)),
                                   child: TextButton(
                                       onPressed: () async {
-                                        Navigator.pushReplacement(
+                                        Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: ((context) =>

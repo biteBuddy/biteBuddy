@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomTheme {
   //Colors for App
   Color primaryColor1 = const Color.fromRGBO(254, 114, 76, 1);
-  Color primaryColor2 = const Color.fromARGB(255, 21, 30, 63);
+  Color primaryColor2 = const Color.fromARGB(255, 0, 141, 213);
 
   //Colors for Categories of Restaurant
 

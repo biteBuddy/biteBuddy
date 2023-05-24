@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { itemSchema } = require('./cart.model.js');
+const {addressSchema} = require('./address.model.js')
 const order = mongoose.Schema({
   createdBy: {
     type: mongoose.Types.ObjectId,
@@ -11,6 +12,10 @@ const order = mongoose.Schema({
     required: true,
     min: [0, 'Cannot create acart with total price of Zero.'],
   },
+  deliveryAddress :{
+    type:addressSchema,
+    required:true,
+  }
 });
 
 module.exports = mongoose.model('order', order);

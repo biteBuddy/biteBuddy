@@ -19,5 +19,4 @@ const restaurantSchema = new mongoose.Schema({
     required: [true, 'Restaurants must have a category.'],
   },
 });
-
 module.exports = mongoose.model('restaurant', restaurantSchema);

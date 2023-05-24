@@ -49,6 +49,7 @@ dependencies:
   auto_size_text: ^3.0.0
   intl_phone_number_input: ^0.7.2
   flutter_credit_card: ^3.0.6
+  toggle_switch: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -23,7 +23,7 @@ const addressSchema = mongoose.Schema({
     required: true,
   },
   PhoneNumber: {
-    type: Number,
+    type: String,
     required: true,
   },
   Address1: {
@@ -38,4 +38,5 @@ const addressSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('address', addressSchema);
+const addressModel = mongoose.model('address', addressSchema);
+module.exports = { addressSchema, addressModel };

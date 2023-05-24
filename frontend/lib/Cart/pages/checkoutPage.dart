@@ -142,10 +142,9 @@ class _CreditCardPageState extends State<CreditCardPage> {
                           });
                         } else {
                           await CartAPI.checkout(widget.total);
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: ((context) {
-                            return CartMain();
-                          })));
+                          Navigator.pop(
+                            context,
+                          );
                         }
                       },
                       child: validating

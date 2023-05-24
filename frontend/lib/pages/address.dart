@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:frontend/ApiSerives/address.dart';
+import 'package:frontend/Cart/model/address.dart';
 import 'package:frontend/common/theme.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class Address extends StatefulWidget {
-  const Address({super.key});
+class AddressPage extends StatefulWidget {
+  const AddressPage({super.key});
 
   @override
-  State<Address> createState() => _AddressState();
+  State<AddressPage> createState() => _AddressPageState();
 }
 
-class _AddressState extends State<Address> {
+class _AddressPageState extends State<AddressPage> {
   List<String> states = [
-    "Madhesh "
-        "Bagmati ",
+    "Madhesh ",
+    "Bagmati ",
     "Gandaki ",
     "Lumbini ",
     "Karnali ",
     "Sudur Pashchim ",
   ];
+  late Address _deliveryAddress = Address(
+      fullName: "fullName",
+      state: "state",
+      district: "district",
+      city: "city",
+      phoneNumber: "123131",
+      address1: "address1");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +74,9 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
-                      onChanged: (value) async {},
+                      onChanged: (value) async {
+                        _deliveryAddress.fullName = value;
+                      },
                       decoration: InputDecoration(
                           filled: true,
                           labelText: "Full Name",
@@ -81,7 +93,9 @@ class _AddressState extends State<Address> {
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
                       autofillHints: states,
-                      onChanged: (value) async {},
+                      onChanged: (value) async {
+                        _deliveryAddress.state = value;
+                      },
                       decoration: InputDecoration(
                           filled: true,
                           labelText: "State",
@@ -102,7 +116,9 @@ class _AddressState extends State<Address> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 2.25,
                           child: TextField(
-                            onChanged: (value) async {},
+                            onChanged: (value) async {
+                              _deliveryAddress.district = value;
+                            },
                             decoration: InputDecoration(
                                 filled: true,
                                 labelText: "District",
@@ -116,7 +132,9 @@ class _AddressState extends State<Address> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width / 2.25,
                           child: TextField(
-                            onChanged: (value) async {},
+                            onChanged: (value) async {
+                              _deliveryAddress.city = value;
+                            },
                             decoration: InputDecoration(
                                 filled: true,
                                 labelText: "City",
@@ -136,7 +154,10 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: InternationalPhoneNumberInput(
-                      onInputChanged: ((value) {}),
+                      onInputChanged: ((value) {
+                        _deliveryAddress.phoneNumber =
+                            value.phoneNumber.toString();
+                      }),
                       inputDecoration: InputDecoration(
                           filled: true,
                           labelText: "Phone Number",
@@ -152,7 +173,9 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
-                      onChanged: (value) async {},
+                      onChanged: (value) async {
+                        _deliveryAddress.address1 = value;
+                      },
                       decoration: InputDecoration(
                           filled: true,
                           labelText: "Address Line 1",
@@ -168,7 +191,9 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
-                      onChanged: (value) async {},
+                      onChanged: (value) async {
+                        _deliveryAddress.address2 = value;
+                      },
                       decoration: InputDecoration(
                           filled: true,
                           labelText: "Address Line 2",
@@ -184,6 +209,9 @@ class _AddressState extends State<Address> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 1.1,
                     child: TextField(
+                      onChanged: ((value) {
+                        _deliveryAddress.extraDetails = value;
+                      }),
                       minLines: 7,
                       maxLines: null,
                       decoration: InputDecoration(
@@ -208,7 +236,10 @@ class _AddressState extends State<Address> {
                         color: CustomTheme().primaryColor1,
                         borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          print(_deliveryAddress.address1);
+                          await AddressAPI.addAddress(_deliveryAddress);
+                        },
                         child: Text(
                           "Add Address",
                           style: TextStyle(

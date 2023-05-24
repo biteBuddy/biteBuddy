@@ -37,8 +37,10 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: (() => Navigator.push(context,
-                        MaterialPageRoute(builder: ((context) => Address())))),
+                    onTap: (() => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => AddressPage())))),
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2,
                       child: Text("Bagmati,Kathmandu,Koteshwor,Narayan Chowk"),
