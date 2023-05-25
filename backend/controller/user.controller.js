@@ -46,7 +46,7 @@ exports.forgotPassword = async (req, res) => {
     throw Error('Cannot Find the user with the provided Email');
   }
 
-  const generatedOtp = otp.generate(7, {
+  const generatedOtp = otp.g4nerate(4, {
     upperCaseAlphabets: false,
     lowerCaseAlphabets: false,
     specialChars: false,
