@@ -75,6 +75,7 @@ class _SignupPageWidgetState extends State<SignupPageWidget> {
       setState(() {
         _isNotValid = true;
       });
+      
     }
   }
 

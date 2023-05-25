@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:frontend/ApiSerives/user.dart';
 import 'package:frontend/authentication/pages/login.dart';
 import 'package:frontend/common/theme.dart';
 import 'otp.dart';
+
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -83,13 +86,24 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: CustomTheme().primaryColor1),
               child: const Text('Send OTP to email'),
-              onPressed: () {
-                print(emailController.text);
-Navigator.pushReplacement(
+              onPressed: () async {
+                try {
+                  print(emailController.text);
+                  var value =
+                      await UserAPI().forgotPassword(emailController.text);
+
+                  if (value) {
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const OtpPage()),
+                          builder: (context) => OtpPage(
+                                email: emailController.text,
+                              )),
                     );
+                  }
+                } catch (e) {
+                  Fluttertoast.showToast(msg: "Error Occured");
+                }
               },
             ),
           ),

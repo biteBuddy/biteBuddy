@@ -46,7 +46,7 @@ exports.forgotPassword = async (req, res) => {
     throw Error('Cannot Find the user with the provided Email');
   }
 
-  const generatedOtp = otp.g4nerate(4, {
+  const generatedOtp = otp.generate(5, {
     upperCaseAlphabets: false,
     lowerCaseAlphabets: false,
     specialChars: false,
@@ -65,26 +65,31 @@ exports.forgotPassword = async (req, res) => {
   sendOtp('bikrajshrestha2@gmail.com', 'Bikraj', generatedOtp);
   res.status(200).json({ success: true, msg: 'OTP was generated' });
 };
-exports.changePassword = async (req, res) => {
-  const { email, newPassword, otp } = req.body;
-  if (!otp) {
-    throw Error('Enter the OTP sent to your mail');
-  }
+exports.checkOtp = async (req, res) => {
+  console.log('asdfsfasd');
+  const { email, otp } = req.body;
+  console.log(email, otp);
+  const user = await UserModel.findOne({ email: email });
+  const otpExist = await otpModel.findOne({ userId: user.id });
 
+  if (otp == otpExist.otp) {
+    res.status(200).json({ success: true, msg: 'Correct Otp' });
+  } else {
+    throw new Error('Otp Doesnot Match');
+  }
+};
+exports.changePassword = async (req, res) => {
+  const { email, newPassword } = req.body;
+  console.log(email, newPassword);
   if (!newPassword) {
     res.status(400).json({ success: true, msg: 'Please Enter a new password' });
   }
   const user = await UserModel.findOne({ email: email });
-  const optUser = await otpModel.findOne({ userId: user.id });
-  console.log(otp, optUser.otp);
-  if (!(otp === optUser.otp)) {
-    throw Error('The otp you entered donot match');
-  }
-  console.log(optUser);
   user.password = newPassword;
   const salt = await bcrypt.genSalt(10);
   const hashpass = await bcrypt.hash(user.password, salt);
   user.password = hashpass;
   await user.save();
+
   res.status(200).json({ success: true, msg: 'Password is changed' });
 };

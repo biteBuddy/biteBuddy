@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:frontend/ApiSerives/user.dart';
 import 'package:frontend/authentication/pages/changepassword.dart';
 import 'package:frontend/authentication/pages/forgotpassword.dart';
 
 import 'dart:convert';
 import '../../ApiSerives/token.dart';
 
-
 class OtpPage extends StatelessWidget {
-  const OtpPage({Key? key}) : super(key: key);
-
+  OtpPage({Key? key, required this.email}) : super(key: key);
+  String email;
   static const String _title = 'Sample App';
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: _title,
       home: Scaffold(
@@ -28,13 +28,16 @@ class OtpPage extends StatelessWidget {
           //   title: const Text(""),
           //   backgroundColor:  Color(0xFFD2FBA4),
           // ),
-          body: OtpPageWidget()),
+          body: OtpPageWidget(
+        email: email,
+      )),
     );
   }
 }
 
 class OtpPageWidget extends StatefulWidget {
-  const OtpPageWidget({Key? key}) : super(key: key);
+  OtpPageWidget({Key? key, required this.email}) : super(key: key);
+  String email;
   @override
   State<OtpPageWidget> createState() => _OtpPageWidgetState();
 }
@@ -46,6 +49,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
   final TextEditingController _otpController3 = TextEditingController();
 
   final TextEditingController _otpController4 = TextEditingController();
+  final TextEditingController _otpController5 = TextEditingController();
   var token = Token();
 
   @override
@@ -200,6 +204,7 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                             height: 45,
                             width: 40,
                             child: TextFormField(
+                              controller: _otpController5,
                               onChanged: (value) {
                                 if (value.length == 1) {
                                   FocusScope.of(context).nextFocus();
@@ -233,28 +238,46 @@ class _OtpPageWidgetState extends State<OtpPageWidget> {
                             backgroundColor:
                                 const Color.fromRGBO(254, 114, 76, 1),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             //
-                            token.storage.read(key: 'otp').then((value) {
+                            // token.storage.read(key: 'otp').then((value) {
+                            //   String otp = _otpController1.text +
+                            //       _otpController2.text +
+                            //       _otpController3.text +
+                            //       _otpController4.text;
+
+                            //   if (value == otp) {
+                            //     Navigator.pushReplacement(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: (context) =>
+                            //               const ChangePasswordPage()),
+                            //     );
+                            try {
                               String otp = _otpController1.text +
                                   _otpController2.text +
                                   _otpController3.text +
-                                  _otpController4.text;
-
-                              if (value == otp) {
+                                  _otpController4.text +
+                                  _otpController5.text;
+                              print(otp);
+                              print('This is the ${widget.email}');
+                              var res =
+                                  await UserAPI().checkOtp(otp, widget.email);
+                              if (res) {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ChangePasswordPage()),
+                                      builder: (context) => ChangePasswordPage(
+                                            email: widget.email,
+                                          )),
                                 );
-                              } else {
-                                Fluttertoast.showToast(
-                                    msg: "Wrong OTP",
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white);
                               }
-                            });
+                            } catch (error) {
+                              Fluttertoast.showToast(
+                                  msg: "Wrong OTP",
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white);
+                            }
                           },
                           child: const Text("Enter")),
                     )

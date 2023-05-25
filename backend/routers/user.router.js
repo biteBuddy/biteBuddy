@@ -6,5 +6,6 @@ router.post('/registration', UserController.register);
 //login api
 router.post('/login', UserController.login);
 router.post('/forgotPassword', UserController.forgotPassword);
+router.post('/checkOtp', UserController.checkOtp);
 router.post('/changePassword', UserController.changePassword);
 module.exports = router;

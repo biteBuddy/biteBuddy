@@ -18,11 +18,11 @@ class CustomTheme {
   };
 //map for categories
   final Map<String, String> category_Image = {
-    "Fine Dining": "fine_dining.jpg",
-    "Fast Food": "fast_food.jpg",
-    "Cafe": "cafe.jpg",
-    "Buffet": "buffet.jpg",
-    "Bistro": "bistro.jpg",
+    "Fine Dining": "assets/fine_dining.jpg",
+    "Fast Food": "assets/fast_food.jpg",
+    "Cafe": "assets/cafe.jpg",
+    "Buffet": "assets/buffet.jpg",
+    "Bistro": "assets/bistro.jpg",
   };
   //Map for nutrivalues
   final Map<String, String> nutri_Image = {

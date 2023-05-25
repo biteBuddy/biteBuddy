@@ -308,7 +308,7 @@ class _CartMainState extends ConsumerState<CartMain> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
-                                  Image(image: AssetImage("Group.png")),
+                                  Image(image: AssetImage("assets/Group.png")),
                                   SizedBox(
                                     height: 10,
                                   ),
