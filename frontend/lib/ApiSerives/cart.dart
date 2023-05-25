@@ -9,6 +9,8 @@ import 'package:frontend/ApiSerives/restaurant.dart';
 import 'package:frontend/ApiSerives/token.dart';
 import 'package:frontend/Cart/model/cart.dart';
 
+import '../Cart/model/address.dart';
+
 Dio cartDio = Dio();
 
 class CartAPI {
@@ -87,9 +89,11 @@ class CartAPI {
   static Future addToCart(String foodId, int quantity) async {
     try {
       String token = await Token().getToken();
+
       final res = await cartDio.post('http://localhost:3000/api/v1/cart',
           options: Options(headers: {"authorization": "Bearer ${token}"}),
           data: {"foodId": foodId, "quantity": quantity});
+
       return res.data['item']['_id'];
     } on DioError catch (e) {
       print(e);
@@ -114,22 +118,18 @@ class CartAPI {
     }
   }
 
-  static  Future checkout (double total) async {
+  static Future checkout(double total, Adddress adress) async {
     try {
-      try {
-        String token = await Token().getToken();
-        final res = await cartDio.post(
-            'http://localhost:3000/api/v1/cart/checkout',
-            options: Options(headers: {"authorization": "Bearer ${token}"}),
-            data: {"total": total});
-      } on DioError catch (e) {
-        Fluttertoast.showToast(
-            msg: e.message.toString(),
-            backgroundColor: Colors.red,
-            textColor: Colors.white);
-      }
-    } catch (e) {
-      
+      String token = await Token().getToken();
+      final res = await cartDio.post(
+          'http://localhost:3000/api/v1/cart/checkout',
+          options: Options(headers: {"authorization": "Bearer ${token}"}),
+          data: {"total": total, "adress": adress});
+    } on DioError catch (e) {
+      Fluttertoast.showToast(
+          msg: e.message.toString(),
+          backgroundColor: Colors.red,
+          textColor: Colors.white);
     }
   }
 }

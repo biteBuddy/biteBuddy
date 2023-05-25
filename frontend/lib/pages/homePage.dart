@@ -1,24 +1,28 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/Food/Page/FoodSlider.dart';
 import 'package:frontend/Restuarant/Page/RestaurantSlider.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 import 'package:frontend/pages/address.dart';
 import 'package:frontend/widgets/categories.dart';
 import 'package:frontend/widgets/topPicks.dart';
 import '../ApiSerives/restaurant.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var restos = ref.watch(RestroProvider);
+    restos.getRestaurant();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,27 +36,11 @@ class _HomePageState extends State<HomePage> {
             // )),
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: (() => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => AddressPage())))),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: Text("Bagmati,Kathmandu,Koteshwor,Narayan Chowk"),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(
                 height: 30,
               ),
               Text(
-                "Hello Username,",
+                "Hello There,",
                 style: TextStyle(
                     color: CustomTheme().primaryColor1,
                     fontWeight: FontWeight.w800,

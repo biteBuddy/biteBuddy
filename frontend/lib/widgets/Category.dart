@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:frontend/common/theme.dart';
 
+import '../Restuarant/Page/category_page.dart';
+
 class Category extends StatefulWidget {
   Category({super.key, required this.name});
   String name;
@@ -15,6 +17,14 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: (() {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => RestroCategory(
+                      category: widget.name,
+                    ))));
+      }),
       child: Stack(
         children: [
           Container(

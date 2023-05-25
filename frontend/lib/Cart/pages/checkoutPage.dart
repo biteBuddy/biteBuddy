@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_credit_card/credit_card_form.dart';
-import 'package:flutter_credit_card/credit_card_model.dart';
+
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/ApiSerives/cart.dart';
-import 'package:frontend/Cart/pages/CartMain.dart';
+import 'package:frontend/Cart/model/address.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
+import 'package:frontend/pages/address.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class CreditCardPage extends StatefulWidget {
+class CreditCardPage extends ConsumerStatefulWidget {
   CreditCardPage({Key? key, required this.total}) : super(key: key);
   double total;
   @override
   _CreditCardPageState createState() => _CreditCardPageState();
 }
 
-class _CreditCardPageState extends State<CreditCardPage> {
+class _CreditCardPageState extends ConsumerState<CreditCardPage> {
   bool validated = false;
   bool validating = false;
   String cardNumber = '';
@@ -25,6 +27,7 @@ class _CreditCardPageState extends State<CreditCardPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    var adressProv = ref.watch(AddressProvider);
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
@@ -86,15 +89,23 @@ class _CreditCardPageState extends State<CreditCardPage> {
                         border: Border.all(width: 0.5),
                         borderRadius: BorderRadius.circular(2)),
                     width: MediaQuery.of(context).size.width / 1.1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Billing Address",
-                            style: CustomTheme()
-                                .totalPrice
-                                .copyWith(letterSpacing: 0.1)),
-                        Icon(Icons.arrow_forward_ios)
-                      ],
+                    child: GestureDetector(
+                      onTap: (() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => AddressPage())));
+                      }),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Billing Address",
+                              style: CustomTheme()
+                                  .totalPrice
+                                  .copyWith(letterSpacing: 0.1)),
+                          Icon(Icons.arrow_forward_ios)
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -141,7 +152,7 @@ class _CreditCardPageState extends State<CreditCardPage> {
                             validated = true;
                           });
                         } else {
-                          await CartAPI.checkout(widget.total);
+                          await CartAPI.checkout(widget.total,adressProv.getAdress() as Adddress);
                           Navigator.pop(
                             context,
                           );

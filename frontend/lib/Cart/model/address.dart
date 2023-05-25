@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-Address addressFromJson(String str) => Address.fromJson(json.decode(str));
+Adddress addressFromJson(String str) => Adddress.fromJson(json.decode(str));
 
-String addressToJson(Address data) => json.encode(data.toJson());
+String addressToJson(Adddress data) => json.encode(data.toJson());
 
-class Address {
+class Adddress{
   String? id;
   String? belongsTo;
   String fullName;
@@ -16,7 +16,7 @@ class Address {
   String? address2;
   String? extraDetails;
 
-  Address({
+  Adddress({
     this.id,
      this.belongsTo,
     required this.fullName,
@@ -29,7 +29,7 @@ class Address {
     this.extraDetails,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) => Address(
+  factory Adddress.fromJson(Map<String, dynamic> json) => Adddress(
         id: json["_id"],
         belongsTo: json["belongsTo"],
         fullName: json["fullName"],

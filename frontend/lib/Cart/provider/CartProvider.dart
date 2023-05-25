@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:frontend/ApiSerives/cart.dart';
+import 'package:frontend/Cart/model/address.dart';
 import 'package:frontend/Cart/model/cart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -94,4 +95,16 @@ class Cart extends ChangeNotifier {
   // Future removeDataFromLocalStorage() {
   //   sharedPreferences!.remove("hey");
   // }
+}
+
+class AdressProv extends ChangeNotifier {
+  Adddress? _address;
+
+  void addAddress(Adddress adress) {
+    _address = adress;
+  }
+
+  Adddress? getAdress() {
+    return _address;
+  }
 }

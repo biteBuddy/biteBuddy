@@ -6,19 +6,21 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:frontend/Cart/pages/checkoutPage.dart';
 import 'package:frontend/Cart/provider/CartProvider.dart';
 import 'package:frontend/Favorites/provider/favProvider.dart';
+import 'package:frontend/Restuarant/provider/restaurantProvider.dart';
 
 import 'package:frontend/pages/landingpages.dart';
 import 'package:frontend/splashScreen/loadinScreen.dart';
 
-void main() {
-  Stripe.publishableKey =
-      "pk_test_51MSI9dAkl1eBY46uH19GDjulKm1oXQpLQO7CkPd5Qk9JBHtqOoVWpwaCg5t4e1XEeUIlbRCI5ha4K0bUAOyw5TRN00WWl2by6U";
-  runApp(const ProviderScope(child: MyApp()));
-}
-
 final FavRestroProvider = ChangeNotifierProvider(((ref) => FavProvider()));
 
 final CartProvider = ChangeNotifierProvider(((ref) => Cart()));
+
+final AddressProvider = ChangeNotifierProvider(((ref) => AdressProv()));
+// ignore: non_constant_identifier_names
+final RestroProvider = ChangeNotifierProvider((ref) => RestaurantsProvider());
+void main() {
+  runApp(const ProviderScope(child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

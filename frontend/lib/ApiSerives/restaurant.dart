@@ -11,10 +11,9 @@ class restaurantAPI {
     try {
       final response =
           await restaurantDio.get("http://localhost:3000/api/v1/restaurant");
-      List<Restaurant> _res =
+      List<Restaurant> res =
           (restaurantFromJson(jsonEncode(response.data['data'])));
-
-      return _res;
+      return res;
     } catch (e) {}
   }
 }

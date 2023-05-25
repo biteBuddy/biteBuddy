@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:frontend/ApiSerives/address.dart';
 import 'package:frontend/Cart/model/address.dart';
+import 'package:frontend/Cart/provider/CartProvider.dart';
 import 'package:frontend/common/theme.dart';
+import 'package:frontend/main.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-class AddressPage extends StatefulWidget {
-  const AddressPage({super.key});
+class AddressPage extends ConsumerStatefulWidget {
+  AddressPage({super.key});
 
   @override
-  State<AddressPage> createState() => _AddressPageState();
+  ConsumerState<AddressPage> createState() => _AddressPageState();
 }
 
-class _AddressPageState extends State<AddressPage> {
+class _AddressPageState extends ConsumerState<AddressPage> {
   List<String> states = [
     "Madhesh ",
     "Bagmati ",
@@ -22,7 +25,8 @@ class _AddressPageState extends State<AddressPage> {
     "Karnali ",
     "Sudur Pashchim ",
   ];
-  late Address _deliveryAddress = Address(
+
+  late Adddress _deliveryAddress = Adddress(
       fullName: "fullName",
       state: "state",
       district: "district",
@@ -32,6 +36,7 @@ class _AddressPageState extends State<AddressPage> {
 
   @override
   Widget build(BuildContext context) {
+    final addressProv = ref.watch(AddressProvider);
     return Scaffold(
       appBar: AppBar(
         title: Column(
@@ -237,8 +242,8 @@ class _AddressPageState extends State<AddressPage> {
                         borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                         onPressed: () async {
-                          print(_deliveryAddress.address1);
-                          await AddressAPI.addAddress(_deliveryAddress);
+                          addressProv.addAddress(_deliveryAddress);
+                          Navigator.pop(context);
                         },
                         child: Text(
                           "Add Address",

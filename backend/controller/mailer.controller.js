@@ -1,7 +1,7 @@
 const nodeMailer = require('nodemailer');
 var crypto = require('crypto');
 
-const sendMail = async (email, username, otp) => {
+const sendOtp = async (email, username, otp) => {
   var message = {
     from: 'kharchaOfficial@gmail.com',
     to: `${email}`,
@@ -34,4 +34,4 @@ const sendMail = async (email, username, otp) => {
   }
 };
 
-module.exports = sendMail;
+module.exports = sendOtp;

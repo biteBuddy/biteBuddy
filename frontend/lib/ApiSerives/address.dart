@@ -8,7 +8,7 @@ import 'package:frontend/pages/address.dart';
 Dio addressDio = new Dio();
 
 class AddressAPI {
-  static Future addAddress(Address address) async {
+  static Future addAddress(Adddress address) async {
     try {
       String token = await Token().getToken();
       final _address = await addressDio.post(

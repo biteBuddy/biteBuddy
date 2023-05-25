@@ -1,6 +1,6 @@
 const UserServices = require('../services/user.services');
 const bcrypt = require('bcrypt');
-const sendMail = require('./mailer.controller');
+const sendOtp = require('./mailer.controller');
 const otpModel = require('../model/otp.model');
 const otp = require('otp-generator');
 const UserModel = require('../model/user.model');
@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
     throw Error('Please enter a password');
   }
   const isMatch = await user.comparePassword(password);
-  
+
   if (isMatch === false) {
     throw new Error('Invalid Password!');
   }
@@ -62,7 +62,7 @@ exports.forgotPassword = async (req, res) => {
     });
   }
 
-  sendMail('bikrajshrestha2@gmail.com', 'Bikraj', generatedOtp);
+  sendOtp('bikrajshrestha2@gmail.com', 'Bikraj', generatedOtp);
   res.status(200).json({ success: true, msg: 'OTP was generated' });
 };
 exports.changePassword = async (req, res) => {

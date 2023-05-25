@@ -31,7 +31,7 @@ class Categories extends StatelessWidget {
               Category(name: "Fine Dining"),
               Category(name: "Cafe"),
               Category(name: "Buffet"),
-              Category(name: "Buffet"),
+              Category(name: "Bistro"),
             ],
           ),
         )
