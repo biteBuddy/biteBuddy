@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/authentication/pages/login.dart';
 import 'package:frontend/common/theme.dart';
-
+import 'otp.dart';
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -82,9 +82,14 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: CustomTheme().primaryColor1),
-              child: const Text('Reset Password'),
+              child: const Text('Send OTP to email'),
               onPressed: () {
                 print(emailController.text);
+Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OtpPage()),
+                    );
               },
             ),
           ),
